@@ -15,14 +15,10 @@ echo.
 echo   請先在 GitHub (https://github.com/new) 建立一個新儲存庫 (Repository)，
 echo   然後將儲存庫網址貼在下方 (例如: https://github.com/你的帳號/taiwan-tours.git)：
 echo.
-set /p REPO_URL="請貼上 GitHub 儲存庫網址: "
+set DEFAULT_URL=https://github.com/hsuchinchen222/taiwan-guided-tours.git
+set /p REPO_URL="請貼上 GitHub 儲存庫網址 (直接按 Enter 即使用預設儲存庫): "
 
-if "%REPO_URL%"=="" (
-    echo.
-    echo   [未輸入網址，部署取消]
-    pause
-    exit /b
-)
+if "%REPO_URL%"=="" set REPO_URL=%DEFAULT_URL%
 
 echo.
 echo   正在設定遠端倉庫並推送至 GitHub...
