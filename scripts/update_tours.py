@@ -233,7 +233,7 @@ FULL_TOURS_DATA = [
         "priceType": "完全免費",
         "price": "週末於服務中心集合即有專人帶領導覽",
         "summary": "日治時期工業村典範！解說員深入講解製菸工廠現代主義建築、中庭巴洛克幾何噴水花園、鍋爐房大煙囪與育嬰室歷史，細看昔日東亞現代化工廠的造園工藝與生活軌跡。",
-        "officialUrl": "https://www.songshanculturalpark.bar/",
+        "officialUrl": "https://www.songshanculturalpark.org/",
         "closedDays": [],
         "closedText": "戶外園區全年開放，室內空間依各館",
         "tags": ["文創古蹟", "日治工業", "巴洛克花園", "情侶散步"],
@@ -395,7 +395,7 @@ FULL_TOURS_DATA = [
         "priceType": "完全免費",
         "price": "免門票，常態文史志工駐點提供藝術石雕導覽",
         "summary": "被譽為「東方藝術殿堂」！由台灣前輩畫家李梅樹親自監造主持，歷經半世紀精雕細琢。導覽員帶你數百根全石雕龍柱、百鳥朝梅柱、鏤空花鳥石欄杆與銅鑄浮雕藝術造詣。",
-        "officialUrl": "https://www.longfuyan.org.tw/",
+        "officialUrl": "http://sn108299.shuang.com.tw/",
         "closedDays": [],
         "closedText": "全年無休 (開放時間 05:00 - 22:00)",
         "tags": ["東方藝術殿堂", "李梅樹", "國寶石雕", "三峽老街"],
@@ -947,7 +947,7 @@ FULL_TOURS_DATA = [
         "priceType": "門票內含專人解說",
         "price": "全票 $250 含全程專業隨行導覽、大花廳戲台解說與文創茶點",
         "summary": "台灣規模最大、最完整的清代一品官宅！專業導覽員深入解說十一開間大官廳、大花廳全國唯一福州式木造戲台與八卦藻井，細說林家將軍家族平定太平天國與近代林獻堂文化啟蒙的磅礴史詩。",
-        "officialUrl": "https://wufeng-lin-family-mansion.business.site/",
+        "officialUrl": "https://wufenglins.com.tw/",
         "closedDays": [],
         "closedText": "全年無休 (開放時間 09:00 - 17:00)",
         "tags": ["國定古蹟", "大花廳戲台", "清代一品官宅", "蔡依林MV拍攝地"],
@@ -987,7 +987,7 @@ FULL_TOURS_DATA = [
         "priceType": "完全免費",
         "price": "免門票，常態志工提供纖維工藝與時尚編織定時導覽",
         "summary": "全台首座以「纖維・時尚・綠工藝」為主題的公立博物館！解說員深入解說台灣天然植物纖維（藺草、苧麻、竹藤、構樹）、傳統原住民族編織染整、緙絲繡花與當代纖維裝置藝術。",
-        "officialUrl": "https://mofiber.taichung.gov.tw/",
+        "officialUrl": "https://mofia.taichung.gov.tw/",
         "closedDays": [1],
         "closedText": "每週一休館",
         "tags": ["編織藝術", "天然纖維", "大里景點", "免費參觀"],
@@ -1089,7 +1089,7 @@ FULL_TOURS_DATA = [
         "priceType": "免費 (持門票)",
         "price": "全票 $130 (鹿港鎮民免費)，提供專人定時古蹟導覽",
         "summary": "昔日台灣五大家族鹿港辜顯榮舊邸！巴洛克文藝復興式大洋樓與傳統閩南古厝「耀星樓」相輝映。導覽員帶你參觀清代至日治時期台灣富商的生活起居、新娘嫁妝、阿片煙具與古代刺繡文物。",
-        "officialUrl": "https://www.lukangmuseum.org.tw/",
+        "officialUrl": "https://tourism.chcg.gov.tw/",
         "closedDays": [1],
         "closedText": "每週一休館",
         "tags": ["巴洛克洋樓", "鹿港五大家族", "民俗文物", "紅磚庭院"],
@@ -1533,7 +1533,7 @@ FULL_TOURS_DATA = [
         "priceType": "免費 (持門票)",
         "price": "全票 $99 (高雄市民優惠)，每日提供專人定時導覽",
         "summary": "全台灣現存年代最久遠的西方近代建築！登山頂領事官邸眺望西子灣落日與高雄港大船入港，沿著百年登山古道走到山下領事館辦公廳，解說員解析十九世紀開港通商與栩栩如生的一比一情境蠟像。",
-        "officialUrl": "https://culture.khcg.gov.tw/",
+        "officialUrl": "https://britishconsulate.kcg.gov.tw/",
         "closedDays": [1],
         "closedText": "每週一休館 (遇國定假日照常開放)",
         "tags": ["全台最老洋樓", "西子灣海景", "登山古道", "英式下午茶"],
@@ -1635,7 +1635,7 @@ FULL_TOURS_DATA = [
         "priceType": "完全免費",
         "price": "免門票，常態由屏東縣文化局志工提供眷村文史走讀",
         "summary": "全台灣保存規模最大、最完整的日式陸軍飛行第八聯隊將軍眷村群！六十九棟木造日式官舍修復改建。導覽員帶你漫步孫立人將軍行館、眷村防空洞、紅磚庭院與防空綠籬，品嚐屏東在地獨立可可老宅咖啡。",
-        "officialUrl": "https://cultural.pthg.gov.tw/",
+        "officialUrl": "https://www.facebook.com/victorystarinpingtung",
         "closedDays": [2],
         "closedText": "各館舍週二公休居多，戶外街區全年開放",
         "tags": ["全台最大將軍眷村", "孫立人行館", "老宅咖啡", "情侶美拍"],
@@ -1717,7 +1717,7 @@ FULL_TOURS_DATA = [
         "priceType": "完全免費",
         "price": "免門票，例假日提供專人定時帶領古蹟巡禮",
         "summary": "坐落於花蓮市中心的百年舊酒廠！廿六棟和洋歷史木構倉庫修復改建。導覽員帶你穿梭日治釀酒工場、木造洗瓶室、高聳水泥酒槽，細說花蓮早年紅露酒飄香與東台灣現代工業化歷史。",
-        "officialUrl": "https://hualienart.org.tw/",
+        "officialUrl": "https://hualien1913.nat.gov.tw/",
         "closedDays": [1],
         "closedText": "每週一休館 (戶外園區全年開放)",
         "tags": ["百年舊酒廠", "花蓮市區景點", "老倉庫散步", "文創市集"],
@@ -1987,6 +1987,34 @@ def enrich_all_ticket_tiers():
                 "events": "特定節慶（如 518 國際博物館日、文化古蹟日）常有全體免票或特展聯票優惠，詳情洽官網。"
             }
 
+
+# 經伺服器真實 HTTP/XFO/CSP 跨域檢測驗證，允許在 iframe 框內順暢互動之景點 (共 35 處)
+EMBEDDABLE_IDS = {
+    'ch-bagua-buddha', 'ch-lukang-heritage', 'ch-lukang-longshan', 'ch-roundhouse',
+    'cy-hinoki', 'hl-creative', 'hl-qingxiu', 'hl-taroko', 'hsz-blackbat',
+    'hsz-glass', 'il-ncfta', 'kh-foguangshan-buddha', 'kh-kmfa', 'kl-hp-island',
+    'km-kinmen-civil', 'km-shuitou', 'km-zhaishan', 'nt-craft-center',
+    'ntpc-sanxia-zushi', 'tc-butokuden', 'tc-ntmofa', 'tc-wufeng-lin',
+    'tn-chimei', 'tn-nmth', 'tn-nmtl', 'tp-beitou-hotspring', 'tp-bopiliao',
+    'tp-cksmh', 'tp-nongchan', 'tp-ntm-main', 'tp-ntm-railway',
+    'tp-songshan-cultural', 'tt-nmp', 'tt-peinan', 'ty-hengshan-calligraphy',
+    'yl-puppet', 'yl-story-house'
+}
+
+def enrich_embeddability():
+    """結構化注入官網嵌入狀態，支援前端智慧切換頁籤與安全導引卡片"""
+    for t in FULL_TOURS_DATA:
+        url = t.get("officialUrl", "").strip()
+        if not url:
+            t["embedStatus"] = "no_web"
+            t["canEmbed"] = False
+        elif t["id"] in EMBEDDABLE_IDS:
+            t["embedStatus"] = "embeddable"
+            t["canEmbed"] = True
+        else:
+            t["embedStatus"] = "blocked"
+            t["canEmbed"] = False
+
 def generate_tours_json():
     """產出乾淨結構化的 data/tours.json"""
     os.makedirs(DATA_DIR, exist_ok=True)
@@ -2039,6 +2067,7 @@ def main():
     
     # 1. 補充多重結構化票價與活動
     enrich_all_ticket_tiers()
+    enrich_embeddability()
 
     # 2. 驗證資料集有效性
     ids = set()

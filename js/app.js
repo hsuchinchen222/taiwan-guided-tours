@@ -125,6 +125,9 @@ class TourApp {
       officialIframeNotice: document.getElementById("official-iframe-notice"),
       officialNoWebBadge: document.getElementById("official-no-web-badge"),
       officialNoWebContainer: document.getElementById("official-no-web-container"),
+      officialBlockedContainer: document.getElementById("official-blocked-container"),
+      blockedCardSite: document.getElementById("blocked-card-site"),
+      btnPortalLaunch: document.getElementById("btn-portal-launch"),
       noticeExternalLink: document.getElementById("notice-external-link"),
       officialInfoContainer: document.getElementById("official-info-container"),
 
@@ -876,26 +879,25 @@ class TourApp {
     // 渲染詳細資訊頁面
     this.dom.officialInfoContainer.innerHTML = this.renderOfficialInfo(tour);
 
-    // 判斷是否有官方網站
+    // 判斷官方網站狀態與嵌入可行性
     const hasOfficialWeb = !!(tour.officialUrl && tour.officialUrl.trim() !== "");
+    const canEmbed = hasOfficialWeb && (tour.canEmbed === true || tour.embedStatus === "embeddable");
     
     if (this.dom.officialNoWebBadge) {
       this.dom.officialNoWebBadge.classList.toggle("hidden", hasOfficialWeb);
     }
 
-    if (hasOfficialWeb) {
-      this.dom.tabOfficialWeb.innerText = "🌐 官方網站首頁 (可直接點擊操作)";
+    if (canEmbed) {
+      // 🟢 1. 允許在框內嵌入 (如：奇美博物館、臺博館、松山文創、國美館)
+      this.dom.tabOfficialWeb.innerText = "🌐 官方網站首頁 (可框內操作)";
       this.dom.tabOfficialWeb.style.display = "flex";
       this.dom.btnOfficialExternal.href = tour.officialUrl;
       this.dom.btnOfficialExternal.style.display = "inline-flex";
       this.dom.noticeExternalLink.href = tour.officialUrl;
 
-      if (this.dom.officialIframeNotice) {
-        this.dom.officialIframeNotice.classList.remove("hidden");
-      }
-      if (this.dom.officialNoWebContainer) {
-        this.dom.officialNoWebContainer.classList.add("hidden");
-      }
+      if (this.dom.officialIframeNotice) this.dom.officialIframeNotice.classList.remove("hidden");
+      if (this.dom.officialNoWebContainer) this.dom.officialNoWebContainer.classList.add("hidden");
+      if (this.dom.officialBlockedContainer) this.dom.officialBlockedContainer.classList.add("hidden");
 
       this.dom.officialIframe.style.display = "block";
       this.dom.officialLoading.classList.remove("hidden");
@@ -910,22 +912,51 @@ class TourApp {
         this.dom.officialLoading.classList.add("hidden");
       }, 3500);
 
+      // 預設直接開啟官網框內瀏覽
       this.switchOfficialTab("web");
+
+    } else if (hasOfficialWeb) {
+      // 🔴 2. 目標官網設有高規格資安防護 (XFO/CSP 拒絕嵌入，如：歌劇院、科博館、故宮)
+      this.dom.tabOfficialWeb.innerText = "🌐 官方網站 (另開新窗 ↗)";
+      this.dom.tabOfficialWeb.style.display = "flex";
+      this.dom.btnOfficialExternal.href = tour.officialUrl;
+      this.dom.btnOfficialExternal.style.display = "inline-flex";
+      this.dom.noticeExternalLink.href = tour.officialUrl;
+
+      if (this.dom.officialIframeNotice) this.dom.officialIframeNotice.classList.add("hidden");
+      if (this.dom.officialNoWebContainer) this.dom.officialNoWebContainer.classList.add("hidden");
+      
+      // 設定安全導引卡片
+      if (this.dom.blockedCardSite) {
+        this.dom.blockedCardSite.innerText = `${tour.name} · 官方網站`;
+      }
+      if (this.dom.btnPortalLaunch) {
+        this.dom.btnPortalLaunch.href = tour.officialUrl;
+      }
+      if (this.dom.officialBlockedContainer) {
+        this.dom.officialBlockedContainer.classList.remove("hidden");
+      }
+
+      this.dom.officialIframe.src = "about:blank";
+      this.dom.officialIframe.style.display = "none";
+      this.dom.officialLoading.classList.add("hidden");
+
+      // 🌟 智慧分頁導流：資安防護館舍優先為使用者打開精緻整理的「導覽詳情 & 票價」！
+      this.switchOfficialTab("info");
+
     } else {
+      // ⚪ 3. 本身無官方網站 (現場實體走讀)
       this.dom.tabOfficialWeb.innerText = "🌐 官方網站 (無)";
       this.dom.btnOfficialExternal.style.display = "none";
       this.dom.officialIframe.src = "about:blank";
       this.dom.officialIframe.style.display = "none";
       this.dom.officialLoading.classList.add("hidden");
 
-      if (this.dom.officialIframeNotice) {
-        this.dom.officialIframeNotice.classList.add("hidden");
-      }
-      if (this.dom.officialNoWebContainer) {
-        this.dom.officialNoWebContainer.classList.remove("hidden");
-      }
+      if (this.dom.officialIframeNotice) this.dom.officialIframeNotice.classList.add("hidden");
+      if (this.dom.officialBlockedContainer) this.dom.officialBlockedContainer.classList.add("hidden");
+      if (this.dom.officialNoWebContainer) this.dom.officialNoWebContainer.classList.remove("hidden");
 
-      // 無官網時直接展示導覽詳情
+      // 直接展示導覽詳情
       this.switchOfficialTab("info");
     }
 
@@ -950,6 +981,27 @@ class TourApp {
       this.dom.tabOfficialInfo.classList.remove("active");
       this.dom.officialViewWeb.classList.remove("hidden");
       this.dom.officialViewInfo.classList.add("hidden");
+
+      // 根據當前景點狀態決定 web 視圖呈現
+      const tour = this.activeOfficialTour;
+      if (tour) {
+        const hasOfficialWeb = !!(tour.officialUrl && tour.officialUrl.trim() !== "");
+        const canEmbed = hasOfficialWeb && (tour.canEmbed === true || tour.embedStatus === "embeddable");
+
+        if (!hasOfficialWeb) {
+          if (this.dom.officialNoWebContainer) this.dom.officialNoWebContainer.classList.remove("hidden");
+          if (this.dom.officialBlockedContainer) this.dom.officialBlockedContainer.classList.add("hidden");
+          this.dom.officialIframe.style.display = "none";
+        } else if (!canEmbed) {
+          if (this.dom.officialBlockedContainer) this.dom.officialBlockedContainer.classList.remove("hidden");
+          if (this.dom.officialNoWebContainer) this.dom.officialNoWebContainer.classList.add("hidden");
+          this.dom.officialIframe.style.display = "none";
+        } else {
+          if (this.dom.officialBlockedContainer) this.dom.officialBlockedContainer.classList.add("hidden");
+          if (this.dom.officialNoWebContainer) this.dom.officialNoWebContainer.classList.add("hidden");
+          this.dom.officialIframe.style.display = "block";
+        }
+      }
     } else {
       this.dom.tabOfficialInfo.classList.add("active");
       this.dom.tabOfficialWeb.classList.remove("active");

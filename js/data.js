@@ -2,7 +2,7 @@
  * 台灣全省真人導覽景點資料庫 (Taiwan Live Guided Tours Database)
  * 本資料庫由自動化同步更新腳本 scripts/update_tours.py 自動產出
  * 涵蓋全台 22 縣市知名博物館、文化園區、國家公園、宗教名剎之真人定時解說
- * 最後自動更新時間: 2026-09-29 11:08:17
+ * 最後自動更新時間: 2026-09-29 12:04:52
  * 總收錄景點數: 93 處
  */
 
@@ -77,7 +77,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "免費優待 $0 (65歲以上長者平日/部分假日、學齡前幼童、身心障礙者及陪伴者1人憑證)",
       "tourFee": "定時真人導覽：持入館門票即可免費登記參加！(如需個人子母機或語音機租借費另計約 $30~$100)",
       "events": "特定節慶（如 518 國際博物館日、文化古蹟日）常有全體免票或特展聯票優惠，詳情洽官網。"
-    }
+    },
+    "embedStatus": "blocked",
+    "canEmbed": false
   },
   {
     "id": "tp-ntm-main",
@@ -114,7 +116,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "免費優待 $0 (65歲以上長者平日/部分假日、學齡前幼童、身心障礙者及陪伴者1人憑證)",
       "tourFee": "定時真人導覽：持入館門票即可免費登記參加！(如需個人子母機或語音機租借費另計約 $30~$100)",
       "events": "特定節慶（如 518 國際博物館日、文化古蹟日）常有全體免票或特展聯票優惠，詳情洽官網。"
-    }
+    },
+    "embedStatus": "embeddable",
+    "canEmbed": true
   },
   {
     "id": "tp-ntm-railway",
@@ -152,7 +156,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "免費優待 $0 (65歲以上長者平日/部分假日、學齡前幼童、身心障礙者及陪伴者1人憑證)",
       "tourFee": "定時真人導覽：持入館門票即可免費登記參加！(如需個人子母機或語音機租借費另計約 $30~$100)",
       "events": "特定節慶（如 518 國際博物館日、文化古蹟日）常有全體免票或特展聯票優惠，詳情洽官網。"
-    }
+    },
+    "embedStatus": "embeddable",
+    "canEmbed": true
   },
   {
     "id": "tp-tfam",
@@ -189,7 +195,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "免費優待 $0 (65歲以上長者平日/部分假日、學齡前幼童、身心障礙者及陪伴者1人憑證)",
       "tourFee": "定時真人導覽：持入館門票即可免費登記參加！(如需個人子母機或語音機租借費另計約 $30~$100)",
       "events": "特定節慶（如 518 國際博物館日、文化古蹟日）常有全體免票或特展聯票優惠，詳情洽官網。"
-    }
+    },
+    "embedStatus": "blocked",
+    "canEmbed": false
   },
   {
     "id": "tp-bopiliao",
@@ -226,7 +234,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "全面免門票（無門檻開放大眾參觀）",
       "tourFee": "定時真人導覽：完全免費（志工/解說員定時帶領，現場自由集合參加）",
       "events": "常態性文史走讀活動，若有特展或節慶參訪均免費開放。"
-    }
+    },
+    "embedStatus": "embeddable",
+    "canEmbed": true
   },
   {
     "id": "tp-dadaocheng",
@@ -261,7 +271,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "全面免門票（無門檻開放大眾參觀）",
       "tourFee": "定時真人導覽：完全免費（志工/解說員定時帶領，現場自由集合參加）",
       "events": "常態性文史走讀活動，若有特展或節慶參訪均免費開放。"
-    }
+    },
+    "embedStatus": "blocked",
+    "canEmbed": false
   },
   {
     "id": "tp-beitou-hotspring",
@@ -298,7 +310,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "全面免門票（無門檻開放大眾參觀）",
       "tourFee": "定時真人導覽：完全免費（志工/解說員定時帶領，現場自由集合參加）",
       "events": "常態性文史走讀活動，若有特展或節慶參訪均免費開放。"
-    }
+    },
+    "embedStatus": "embeddable",
+    "canEmbed": true
   },
   {
     "id": "tp-nongchan",
@@ -333,7 +347,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "全面免門票（無門檻開放大眾參觀）",
       "tourFee": "定時真人導覽：完全免費（志工/解說員定時帶領，現場自由集合參加）",
       "events": "常態性文史走讀活動，若有特展或節慶參訪均免費開放。"
-    }
+    },
+    "embedStatus": "embeddable",
+    "canEmbed": true
   },
   {
     "id": "tp-cksmh",
@@ -368,7 +384,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "全面免門票（無門檻開放大眾參觀）",
       "tourFee": "定時真人導覽：完全免費（志工/解說員定時帶領，現場自由集合參加）",
       "events": "常態性文史走讀活動，若有特展或節慶參訪均免費開放。"
-    }
+    },
+    "embedStatus": "embeddable",
+    "canEmbed": true
   },
   {
     "id": "tp-songshan-cultural",
@@ -387,7 +405,7 @@ const DEFAULT_TOURS_DATA = [
     "priceType": "完全免費",
     "price": "週末於服務中心集合即有專人帶領導覽",
     "summary": "日治時期工業村典範！解說員深入講解製菸工廠現代主義建築、中庭巴洛克幾何噴水花園、鍋爐房大煙囪與育嬰室歷史，細看昔日東亞現代化工廠的造園工藝與生活軌跡。",
-    "officialUrl": "https://www.songshanculturalpark.bar/",
+    "officialUrl": "https://www.songshanculturalpark.org/",
     "closedDays": [],
     "closedText": "戶外園區全年開放，室內空間依各館",
     "tags": [
@@ -403,7 +421,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "全面免門票（無門檻開放大眾參觀）",
       "tourFee": "定時真人導覽：完全免費（志工/解說員定時帶領，現場自由集合參加）",
       "events": "常態性文史走讀活動，若有特展或節慶參訪均免費開放。"
-    }
+    },
+    "embedStatus": "embeddable",
+    "canEmbed": true
   },
   {
     "id": "tp-baoan",
@@ -438,7 +458,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "全面免門票（無門檻開放大眾參觀）",
       "tourFee": "定時真人導覽：完全免費（志工/解說員定時帶領，現場自由集合參加）",
       "events": "常態性文史走讀活動，若有特展或節慶參訪均免費開放。"
-    }
+    },
+    "embedStatus": "blocked",
+    "canEmbed": false
   },
   {
     "id": "ntpc-gold-museum",
@@ -476,7 +498,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "免費優待 $0 (65歲以上長者平日/部分假日、學齡前幼童、身心障礙者及陪伴者1人憑證)",
       "tourFee": "定時真人導覽：持入館門票即可免費登記參加！(如需個人子母機或語音機租借費另計約 $30~$100)",
       "events": "特定節慶（如 518 國際博物館日、文化古蹟日）常有全體免票或特展聯票優惠，詳情洽官網。"
-    }
+    },
+    "embedStatus": "blocked",
+    "canEmbed": false
   },
   {
     "id": "ntpc-shisanhang",
@@ -513,7 +537,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "免費優待 $0 (65歲以上長者平日/部分假日、學齡前幼童、身心障礙者及陪伴者1人憑證)",
       "tourFee": "定時真人導覽：持入館門票即可免費登記參加！(如需個人子母機或語音機租借費另計約 $30~$100)",
       "events": "特定節慶（如 518 國際博物館日、文化古蹟日）常有全體免票或特展聯票優惠，詳情洽官網。"
-    }
+    },
+    "embedStatus": "blocked",
+    "canEmbed": false
   },
   {
     "id": "ntpc-lin-family",
@@ -552,7 +578,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "免費優待 $0 (65歲以上長者平日/部分假日、學齡前幼童、身心障礙者及陪伴者1人憑證)",
       "tourFee": "定時真人導覽：持入館門票即可免費登記參加！(如需個人子母機或語音機租借費另計約 $30~$100)",
       "events": "特定節慶（如 518 國際博物館日、文化古蹟日）常有全體免票或特展聯票優惠，詳情洽官網。"
-    }
+    },
+    "embedStatus": "blocked",
+    "canEmbed": false
   },
   {
     "id": "ntpc-ceramics",
@@ -589,7 +617,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "免費優待 $0 (65歲以上長者平日/部分假日、學齡前幼童、身心障礙者及陪伴者1人憑證)",
       "tourFee": "定時真人導覽：持入館門票即可免費登記參加！(如需個人子母機或語音機租借費另計約 $30~$100)",
       "events": "特定節慶（如 518 國際博物館日、文化古蹟日）常有全體免票或特展聯票優惠，詳情洽官網。"
-    }
+    },
+    "embedStatus": "blocked",
+    "canEmbed": false
   },
   {
     "id": "ntpc-tamsui-fort",
@@ -628,7 +658,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "免費優待 $0 (65歲以上長者平日/部分假日、學齡前幼童、身心障礙者及陪伴者1人憑證)",
       "tourFee": "定時真人導覽：持入館門票即可免費登記參加！(如需個人子母機或語音機租借費另計約 $30~$100)",
       "events": "特定節慶（如 518 國際博物館日、文化古蹟日）常有全體免票或特展聯票優惠，詳情洽官網。"
-    }
+    },
+    "embedStatus": "blocked",
+    "canEmbed": false
   },
   {
     "id": "ntpc-pinglin-tea",
@@ -665,7 +697,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "免費優待 $0 (65歲以上長者平日/部分假日、學齡前幼童、身心障礙者及陪伴者1人憑證)",
       "tourFee": "定時真人導覽：持入館門票即可免費登記參加！(如需個人子母機或語音機租借費另計約 $30~$100)",
       "events": "特定節慶（如 518 國際博物館日、文化古蹟日）常有全體免票或特展聯票優惠，詳情洽官網。"
-    }
+    },
+    "embedStatus": "blocked",
+    "canEmbed": false
   },
   {
     "id": "ntpc-sanxia-zushi",
@@ -684,7 +718,7 @@ const DEFAULT_TOURS_DATA = [
     "priceType": "完全免費",
     "price": "免門票，常態文史志工駐點提供藝術石雕導覽",
     "summary": "被譽為「東方藝術殿堂」！由台灣前輩畫家李梅樹親自監造主持，歷經半世紀精雕細琢。導覽員帶你數百根全石雕龍柱、百鳥朝梅柱、鏤空花鳥石欄杆與銅鑄浮雕藝術造詣。",
-    "officialUrl": "https://www.longfuyan.org.tw/",
+    "officialUrl": "http://sn108299.shuang.com.tw/",
     "closedDays": [],
     "closedText": "全年無休 (開放時間 05:00 - 22:00)",
     "tags": [
@@ -700,7 +734,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "全面免門票（無門檻開放大眾參觀）",
       "tourFee": "定時真人導覽：完全免費（志工/解說員定時帶領，現場自由集合參加）",
       "events": "常態性文史走讀活動，若有特展或節慶參訪均免費開放。"
-    }
+    },
+    "embedStatus": "embeddable",
+    "canEmbed": true
   },
   {
     "id": "ntpc-huwei-fort",
@@ -737,7 +773,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "免費優待 $0 (65歲以上長者平日/部分假日、學齡前幼童、身心障礙者及陪伴者1人憑證)",
       "tourFee": "定時真人導覽：持入館門票即可免費登記參加！(如需個人子母機或語音機租借費另計約 $30~$100)",
       "events": "特定節慶（如 518 國際博物館日、文化古蹟日）常有全體免票或特展聯票優惠，詳情洽官網。"
-    }
+    },
+    "embedStatus": "blocked",
+    "canEmbed": false
   },
   {
     "id": "kl-nmmst",
@@ -774,7 +812,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "免費優待 $0 (65歲以上長者平日/部分假日、學齡前幼童、身心障礙者及陪伴者1人憑證)",
       "tourFee": "定時真人導覽：持入館門票即可免費登記參加！(如需個人子母機或語音機租借費另計約 $30~$100)",
       "events": "特定節慶（如 518 國際博物館日、文化古蹟日）常有全體免票或特展聯票優惠，詳情洽官網。"
-    }
+    },
+    "embedStatus": "blocked",
+    "canEmbed": false
   },
   {
     "id": "kl-hp-island",
@@ -809,7 +849,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "免費優待 $0 (65歲以上長者平日/部分假日、學齡前幼童、身心障礙者及陪伴者1人憑證)",
       "tourFee": "定時真人導覽：持入館門票即可免費登記參加！(如需個人子母機或語音機租借費另計約 $30~$100)",
       "events": "特定節慶（如 518 國際博物館日、文化古蹟日）常有全體免票或特展聯票優惠，詳情洽官網。"
-    }
+    },
+    "embedStatus": "embeddable",
+    "canEmbed": true
   },
   {
     "id": "kl-yinyuan",
@@ -846,7 +888,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "免費優待 $0 (65歲以上長者平日/部分假日、學齡前幼童、身心障礙者及陪伴者1人憑證)",
       "tourFee": "定時真人導覽：持入館門票即可免費登記參加！(如需個人子母機或語音機租借費另計約 $30~$100)",
       "events": "特定節慶（如 518 國際博物館日、文化古蹟日）常有全體免票或特展聯票優惠，詳情洽官網。"
-    }
+    },
+    "embedStatus": "no_web",
+    "canEmbed": false
   },
   {
     "id": "il-ncfta",
@@ -882,7 +926,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "免費優待 $0 (65歲以上長者平日/部分假日、學齡前幼童、身心障礙者及陪伴者1人憑證)",
       "tourFee": "定時真人導覽：持入館門票即可免費登記參加！(如需個人子母機或語音機租借費另計約 $30~$100)",
       "events": "特定節慶（如 518 國際博物館日、文化古蹟日）常有全體免票或特展聯票優惠，詳情洽官網。"
-    }
+    },
+    "embedStatus": "embeddable",
+    "canEmbed": true
   },
   {
     "id": "il-lym",
@@ -919,7 +965,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "免費優待 $0 (65歲以上長者平日/部分假日、學齡前幼童、身心障礙者及陪伴者1人憑證)",
       "tourFee": "定時真人導覽：持入館門票即可免費登記參加！(如需個人子母機或語音機租借費另計約 $30~$100)",
       "events": "特定節慶（如 518 國際博物館日、文化古蹟日）常有全體免票或特展聯票優惠，詳情洽官網。"
-    }
+    },
+    "embedStatus": "blocked",
+    "canEmbed": false
   },
   {
     "id": "il-kavalan",
@@ -956,7 +1004,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "全面免門票（無門檻開放大眾參觀）",
       "tourFee": "定時真人導覽：完全免費（志工/解說員定時帶領，現場自由集合參加）",
       "events": "常態性文史走讀活動，若有特展或節慶參訪均免費開放。"
-    }
+    },
+    "embedStatus": "blocked",
+    "canEmbed": false
   },
   {
     "id": "il-luodong-forestry",
@@ -991,7 +1041,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "全面免門票（無門檻開放大眾參觀）",
       "tourFee": "定時真人導覽：完全免費（志工/解說員定時帶領，現場自由集合參加）",
       "events": "常態性文史走讀活動，若有特展或節慶參訪均免費開放。"
-    }
+    },
+    "embedStatus": "blocked",
+    "canEmbed": false
   },
   {
     "id": "il-chen-family",
@@ -1028,7 +1080,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "免費優待 $0 (65歲以上長者平日/部分假日、學齡前幼童、身心障礙者及陪伴者1人憑證)",
       "tourFee": "定時真人導覽：持入館門票即可免費登記參加！(如需個人子母機或語音機租借費另計約 $30~$100)",
       "events": "特定節慶（如 518 國際博物館日、文化古蹟日）常有全體免票或特展聯票優惠，詳情洽官網。"
-    }
+    },
+    "embedStatus": "blocked",
+    "canEmbed": false
   },
   {
     "id": "ty-daxi-wood",
@@ -1066,7 +1120,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "全面免門票（無門檻開放大眾參觀）",
       "tourFee": "定時真人導覽：完全免費（志工/解說員定時帶領，現場自由集合參加）",
       "events": "常態性文史走讀活動，若有特展或節慶參訪均免費開放。"
-    }
+    },
+    "embedStatus": "blocked",
+    "canEmbed": false
   },
   {
     "id": "ty-hengshan-calligraphy",
@@ -1103,7 +1159,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "免費優待 $0 (65歲以上長者平日/部分假日、學齡前幼童、身心障礙者及陪伴者1人憑證)",
       "tourFee": "定時真人導覽：持入館門票即可免費登記參加！(如需個人子母機或語音機租借費另計約 $30~$100)",
       "events": "特定節慶（如 518 國際博物館日、文化古蹟日）常有全體免票或特展聯票優惠，詳情洽官網。"
-    }
+    },
+    "embedStatus": "embeddable",
+    "canEmbed": true
   },
   {
     "id": "ty-daxi-lee",
@@ -1140,7 +1198,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "全面免門票（無門檻開放大眾參觀）",
       "tourFee": "定時真人導覽：完全免費（志工/解說員定時帶領，現場自由集合參加）",
       "events": "常態性文史走讀活動，若有特展或節慶參訪均免費開放。"
-    }
+    },
+    "embedStatus": "blocked",
+    "canEmbed": false
   },
   {
     "id": "ty-kuoyuan-ye",
@@ -1176,7 +1236,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "免費優待 $0 (65歲以上長者平日/部分假日、學齡前幼童、身心障礙者及陪伴者1人憑證)",
       "tourFee": "定時真人導覽：持入館門票即可免費登記參加！(如需個人子母機或語音機租借費另計約 $30~$100)",
       "events": "特定節慶（如 518 國際博物館日、文化古蹟日）常有全體免票或特展聯票優惠，詳情洽官網。"
-    }
+    },
+    "embedStatus": "blocked",
+    "canEmbed": false
   },
   {
     "id": "ty-cihu",
@@ -1215,7 +1277,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "免費優待 $0 (65歲以上長者平日/部分假日、學齡前幼童、身心障礙者及陪伴者1人憑證)",
       "tourFee": "定時真人導覽：持入館門票即可免費登記參加！(如需個人子母機或語音機租借費另計約 $30~$100)",
       "events": "特定節慶（如 518 國際博物館日、文化古蹟日）常有全體免票或特展聯票優惠，詳情洽官網。"
-    }
+    },
+    "embedStatus": "blocked",
+    "canEmbed": false
   },
   {
     "id": "hsz-glass",
@@ -1252,7 +1316,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "免費優待 $0 (65歲以上長者平日/部分假日、學齡前幼童、身心障礙者及陪伴者1人憑證)",
       "tourFee": "定時真人導覽：持入館門票即可免費登記參加！(如需個人子母機或語音機租借費另計約 $30~$100)",
       "events": "特定節慶（如 518 國際博物館日、文化古蹟日）常有全體免票或特展聯票優惠，詳情洽官網。"
-    }
+    },
+    "embedStatus": "embeddable",
+    "canEmbed": true
   },
   {
     "id": "hsz-blackbat",
@@ -1289,7 +1355,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "全面免門票（無門檻開放大眾參觀）",
       "tourFee": "定時真人導覽：完全免費（志工/解說員定時帶領，現場自由集合參加）",
       "events": "常態性文史走讀活動，若有特展或節慶參訪均免費開放。"
-    }
+    },
+    "embedStatus": "embeddable",
+    "canEmbed": true
   },
   {
     "id": "hsz-beipu",
@@ -1326,7 +1394,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "全面免門票（無門檻開放大眾參觀）",
       "tourFee": "定時真人導覽：完全免費（志工/解說員定時帶領，現場自由集合參加）",
       "events": "常態性文史走讀活動，若有特展或節慶參訪均免費開放。"
-    }
+    },
+    "embedStatus": "blocked",
+    "canEmbed": false
   },
   {
     "id": "hsc-hsinpu-persimmon",
@@ -1362,7 +1432,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "全面免門票（無門檻開放大眾參觀）",
       "tourFee": "定時真人導覽：完全免費（志工/解說員定時帶領，現場自由集合參加）",
       "events": "常態性文史走讀活動，若有特展或節慶參訪均免費開放。"
-    }
+    },
+    "embedStatus": "no_web",
+    "canEmbed": false
   },
   {
     "id": "ml-sanyi-wood",
@@ -1399,7 +1471,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "免費優待 $0 (65歲以上長者平日/部分假日、學齡前幼童、身心障礙者及陪伴者1人憑證)",
       "tourFee": "定時真人導覽：持入館門票即可免費登記參加！(如需個人子母機或語音機租借費另計約 $30~$100)",
       "events": "特定節慶（如 518 國際博物館日、文化古蹟日）常有全體免票或特展聯票優惠，詳情洽官網。"
-    }
+    },
+    "embedStatus": "blocked",
+    "canEmbed": false
   },
   {
     "id": "ml-hakka",
@@ -1436,7 +1510,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "全面免門票（無門檻開放大眾參觀）",
       "tourFee": "定時真人導覽：完全免費（志工/解說員定時帶領，現場自由集合參加）",
       "events": "常態性文史走讀活動，若有特展或節慶參訪均免費開放。"
-    }
+    },
+    "embedStatus": "blocked",
+    "canEmbed": false
   },
   {
     "id": "ml-shengxing-station",
@@ -1471,7 +1547,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "全面免門票（無門檻開放大眾參觀）",
       "tourFee": "定時真人導覽：完全免費（志工/解說員定時帶領，現場自由集合參加）",
       "events": "常態性文史走讀活動，若有特展或節慶參訪均免費開放。"
-    }
+    },
+    "embedStatus": "blocked",
+    "canEmbed": false
   },
   {
     "id": "ml-huoyan-mountain",
@@ -1509,7 +1587,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "全面免門票（無門檻開放大眾參觀）",
       "tourFee": "定時真人導覽：完全免費（志工/解說員定時帶領，現場自由集合參加）",
       "events": "常態性文史走讀活動，若有特展或節慶參訪均免費開放。"
-    }
+    },
+    "embedStatus": "no_web",
+    "canEmbed": false
   },
   {
     "id": "tc-nmns",
@@ -1548,7 +1628,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "免費優待 $0 (65歲以上長者平日/部分假日、學齡前幼童、身心障礙者及陪伴者1人憑證)",
       "tourFee": "定時真人導覽：持入館門票即可免費登記參加！(如需個人子母機或語音機租借費另計約 $30~$100)",
       "events": "特定節慶（如 518 國際博物館日、文化古蹟日）常有全體免票或特展聯票優惠，詳情洽官網。"
-    }
+    },
+    "embedStatus": "blocked",
+    "canEmbed": false
   },
   {
     "id": "tc-ntmofa",
@@ -1585,7 +1667,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "全面免門票（無門檻開放大眾參觀）",
       "tourFee": "定時真人導覽：完全免費（志工/解說員定時帶領，現場自由集合參加）",
       "events": "常態性文史走讀活動，若有特展或節慶參訪均免費開放。"
-    }
+    },
+    "embedStatus": "embeddable",
+    "canEmbed": true
   },
   {
     "id": "tc-shiyisuo",
@@ -1623,7 +1707,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "全面免門票（無門檻開放大眾參觀）",
       "tourFee": "定時真人導覽：完全免費（志工/解說員定時帶領，現場自由集合參加）",
       "events": "常態性文史走讀活動，若有特展或節慶參訪均免費開放。"
-    }
+    },
+    "embedStatus": "no_web",
+    "canEmbed": false
   },
   {
     "id": "tc-sugar-refinery",
@@ -1660,7 +1746,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "全面免門票（無門檻開放大眾參觀）",
       "tourFee": "定時真人導覽：完全免費（志工/解說員定時帶領，現場自由集合參加）",
       "events": "常態性文史走讀活動，若有特展或節慶參訪均免費開放。"
-    }
+    },
+    "embedStatus": "no_web",
+    "canEmbed": false
   },
   {
     "id": "tc-wufeng-lin",
@@ -1682,7 +1770,7 @@ const DEFAULT_TOURS_DATA = [
     "priceType": "門票內含專人解說",
     "price": "全票 $250 含全程專業隨行導覽、大花廳戲台解說與文創茶點",
     "summary": "台灣規模最大、最完整的清代一品官宅！專業導覽員深入解說十一開間大官廳、大花廳全國唯一福州式木造戲台與八卦藻井，細說林家將軍家族平定太平天國與近代林獻堂文化啟蒙的磅礴史詩。",
-    "officialUrl": "https://wufeng-lin-family-mansion.business.site/",
+    "officialUrl": "https://wufenglins.com.tw/",
     "closedDays": [],
     "closedText": "全年無休 (開放時間 09:00 - 17:00)",
     "tags": [
@@ -1698,7 +1786,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "免費優待 $0 (65歲以上長者平日/部分假日、學齡前幼童、身心障礙者及陪伴者1人憑證)",
       "tourFee": "定時真人導覽：持入館門票即可免費登記參加！(如需個人子母機或語音機租借費另計約 $30~$100)",
       "events": "特定節慶（如 518 國際博物館日、文化古蹟日）常有全體免票或特展聯票優惠，詳情洽官網。"
-    }
+    },
+    "embedStatus": "embeddable",
+    "canEmbed": true
   },
   {
     "id": "tc-opera-house",
@@ -1736,7 +1826,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "免費優待 $0 (65歲以上長者平日/部分假日、學齡前幼童、身心障礙者及陪伴者1人憑證)",
       "tourFee": "定時真人導覽：持入館門票即可免費登記參加！(如需個人子母機或語音機租借費另計約 $30~$100)",
       "events": "特定節慶（如 518 國際博物館日、文化古蹟日）常有全體免票或特展聯票優惠，詳情洽官網。"
-    }
+    },
+    "embedStatus": "blocked",
+    "canEmbed": false
   },
   {
     "id": "tc-fiber-craft",
@@ -1755,7 +1847,7 @@ const DEFAULT_TOURS_DATA = [
     "priceType": "完全免費",
     "price": "免門票，常態志工提供纖維工藝與時尚編織定時導覽",
     "summary": "全台首座以「纖維・時尚・綠工藝」為主題的公立博物館！解說員深入解說台灣天然植物纖維（藺草、苧麻、竹藤、構樹）、傳統原住民族編織染整、緙絲繡花與當代纖維裝置藝術。",
-    "officialUrl": "https://mofiber.taichung.gov.tw/",
+    "officialUrl": "https://mofia.taichung.gov.tw/",
     "closedDays": [
       1
     ],
@@ -1773,7 +1865,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "全面免門票（無門檻開放大眾參觀）",
       "tourFee": "定時真人導覽：完全免費（志工/解說員定時帶領，現場自由集合參加）",
       "events": "常態性文史走讀活動，若有特展或節慶參訪均免費開放。"
-    }
+    },
+    "embedStatus": "blocked",
+    "canEmbed": false
   },
   {
     "id": "tc-butokuden",
@@ -1811,7 +1905,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "全面免門票（無門檻開放大眾參觀）",
       "tourFee": "定時真人導覽：完全免費（志工/解說員定時帶領，現場自由集合參加）",
       "events": "常態性文史走讀活動，若有特展或節慶參訪均免費開放。"
-    }
+    },
+    "embedStatus": "embeddable",
+    "canEmbed": true
   },
   {
     "id": "tc-station-railway",
@@ -1847,7 +1943,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "全面免門票（無門檻開放大眾參觀）",
       "tourFee": "定時真人導覽：完全免費（志工/解說員定時帶領，現場自由集合參加）",
       "events": "常態性文史走讀活動，若有特展或節慶參訪均免費開放。"
-    }
+    },
+    "embedStatus": "no_web",
+    "canEmbed": false
   },
   {
     "id": "ch-roundhouse",
@@ -1884,7 +1982,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "全面免門票（無門檻開放大眾參觀）",
       "tourFee": "定時真人導覽：完全免費（志工/解說員定時帶領，現場自由集合參加）",
       "events": "常態性文史走讀活動，若有特展或節慶參訪均免費開放。"
-    }
+    },
+    "embedStatus": "embeddable",
+    "canEmbed": true
   },
   {
     "id": "ch-lukang-longshan",
@@ -1919,7 +2019,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "全面免門票（無門檻開放大眾參觀）",
       "tourFee": "定時真人導覽：完全免費（志工/解說員定時帶領，現場自由集合參加）",
       "events": "常態性文史走讀活動，若有特展或節慶參訪均免費開放。"
-    }
+    },
+    "embedStatus": "embeddable",
+    "canEmbed": true
   },
   {
     "id": "ch-lukang-heritage",
@@ -1938,7 +2040,7 @@ const DEFAULT_TOURS_DATA = [
     "priceType": "免費 (持門票)",
     "price": "全票 $130 (鹿港鎮民免費)，提供專人定時古蹟導覽",
     "summary": "昔日台灣五大家族鹿港辜顯榮舊邸！巴洛克文藝復興式大洋樓與傳統閩南古厝「耀星樓」相輝映。導覽員帶你參觀清代至日治時期台灣富商的生活起居、新娘嫁妝、阿片煙具與古代刺繡文物。",
-    "officialUrl": "https://www.lukangmuseum.org.tw/",
+    "officialUrl": "https://tourism.chcg.gov.tw/",
     "closedDays": [
       1
     ],
@@ -1956,7 +2058,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "免費優待 $0 (65歲以上長者平日/部分假日、學齡前幼童、身心障礙者及陪伴者1人憑證)",
       "tourFee": "定時真人導覽：持入館門票即可免費登記參加！(如需個人子母機或語音機租借費另計約 $30~$100)",
       "events": "特定節慶（如 518 國際博物館日、文化古蹟日）常有全體免票或特展聯票優惠，詳情洽官網。"
-    }
+    },
+    "embedStatus": "embeddable",
+    "canEmbed": true
   },
   {
     "id": "ch-bagua-buddha",
@@ -1991,7 +2095,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "全面免門票（無門檻開放大眾參觀）",
       "tourFee": "定時真人導覽：完全免費（志工/解說員定時帶領，現場自由集合參加）",
       "events": "常態性文史走讀活動，若有特展或節慶參訪均免費開放。"
-    }
+    },
+    "embedStatus": "embeddable",
+    "canEmbed": true
   },
   {
     "id": "nt-chungtai-main",
@@ -2029,7 +2135,9 @@ const DEFAULT_TOURS_DATA = [
       "國寶造像碑",
       "雙館一票通"
     ],
-    "phone": "049-2932-999"
+    "phone": "049-2932-999",
+    "embedStatus": "blocked",
+    "canEmbed": false
   },
   {
     "id": "nt-chungtai-wood",
@@ -2067,7 +2175,9 @@ const DEFAULT_TOURS_DATA = [
       "中台禪寺園區",
       "雙館一票通"
     ],
-    "phone": "049-2932-999"
+    "phone": "049-2932-999",
+    "embedStatus": "blocked",
+    "canEmbed": false
   },
   {
     "id": "nt-sunmoonlake",
@@ -2102,7 +2212,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "全面免門票（無門檻開放大眾參觀）",
       "tourFee": "定時真人導覽：完全免費（志工/解說員定時帶領，現場自由集合參加）",
       "events": "常態性文史走讀活動，若有特展或節慶參訪均免費開放。"
-    }
+    },
+    "embedStatus": "blocked",
+    "canEmbed": false
   },
   {
     "id": "nt-craft-center",
@@ -2139,7 +2251,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "全面免門票（無門檻開放大眾參觀）",
       "tourFee": "定時真人導覽：完全免費（志工/解說員定時帶領，現場自由集合參加）",
       "events": "常態性文史走讀活動，若有特展或節慶參訪均免費開放。"
-    }
+    },
+    "embedStatus": "embeddable",
+    "canEmbed": true
   },
   {
     "id": "nt-checheng-wood",
@@ -2174,7 +2288,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "全面免門票（無門檻開放大眾參觀）",
       "tourFee": "定時真人導覽：完全免費（志工/解說員定時帶領，現場自由集合參加）",
       "events": "常態性文史走讀活動，若有特展或節慶參訪均免費開放。"
-    }
+    },
+    "embedStatus": "blocked",
+    "canEmbed": false
   },
   {
     "id": "nt-xito-nature",
@@ -2209,7 +2325,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "免費優待 $0 (65歲以上長者平日/部分假日、學齡前幼童、身心障礙者及陪伴者1人憑證)",
       "tourFee": "定時真人導覽：持入館門票即可免費登記參加！(如需個人子母機或語音機租借費另計約 $30~$100)",
       "events": "特定節慶（如 518 國際博物館日、文化古蹟日）常有全體免票或特展聯票優惠，詳情洽官網。"
-    }
+    },
+    "embedStatus": "blocked",
+    "canEmbed": false
   },
   {
     "id": "yl-puppet",
@@ -2247,7 +2365,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "全面免門票（無門檻開放大眾參觀）",
       "tourFee": "定時真人導覽：完全免費（志工/解說員定時帶領，現場自由集合參加）",
       "events": "常態性文史走讀活動，若有特展或節慶參訪均免費開放。"
-    }
+    },
+    "embedStatus": "embeddable",
+    "canEmbed": true
   },
   {
     "id": "yl-story-house",
@@ -2285,7 +2405,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "免費優待 $0 (65歲以上長者平日/部分假日、學齡前幼童、身心障礙者及陪伴者1人憑證)",
       "tourFee": "定時真人導覽：持入館門票即可免費登記參加！(如需個人子母機或語音機租借費另計約 $30~$100)",
       "events": "特定節慶（如 518 國際博物館日、文化古蹟日）常有全體免票或特展聯票優惠，詳情洽官網。"
-    }
+    },
+    "embedStatus": "embeddable",
+    "canEmbed": true
   },
   {
     "id": "cy-npm-south",
@@ -2322,7 +2444,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "免費優待 $0 (65歲以上長者平日/部分假日、學齡前幼童、身心障礙者及陪伴者1人憑證)",
       "tourFee": "定時真人導覽：持入館門票即可免費登記參加！(如需個人子母機或語音機租借費另計約 $30~$100)",
       "events": "特定節慶（如 518 國際博物館日、文化古蹟日）常有全體免票或特展聯票優惠，詳情洽官網。"
-    }
+    },
+    "embedStatus": "blocked",
+    "canEmbed": false
   },
   {
     "id": "cy-hinoki",
@@ -2358,7 +2482,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "全面免門票（無門檻開放大眾參觀）",
       "tourFee": "定時真人導覽：完全免費（志工/解說員定時帶領，現場自由集合參加）",
       "events": "常態性文史走讀活動，若有特展或節慶參訪均免費開放。"
-    }
+    },
+    "embedStatus": "embeddable",
+    "canEmbed": true
   },
   {
     "id": "cy-prison-museum",
@@ -2397,7 +2523,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "全面免門票（無門檻開放大眾參觀）",
       "tourFee": "定時真人導覽：完全免費（志工/解說員定時帶領，現場自由集合參加）",
       "events": "常態性文史走讀活動，若有特展或節慶參訪均免費開放。"
-    }
+    },
+    "embedStatus": "blocked",
+    "canEmbed": false
   },
   {
     "id": "cy-suantou-sugar",
@@ -2435,7 +2563,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "免費優待 $0 (65歲以上長者平日/部分假日、學齡前幼童、身心障礙者及陪伴者1人憑證)",
       "tourFee": "定時真人導覽：持入館門票即可免費登記參加！(如需個人子母機或語音機租借費另計約 $30~$100)",
       "events": "特定節慶（如 518 國際博物館日、文化古蹟日）常有全體免票或特展聯票優惠，詳情洽官網。"
-    }
+    },
+    "embedStatus": "blocked",
+    "canEmbed": false
   },
   {
     "id": "tn-chimei",
@@ -2472,7 +2602,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "免費優待 $0 (65歲以上長者平日/部分假日、學齡前幼童、身心障礙者及陪伴者1人憑證)",
       "tourFee": "定時真人導覽：持入館門票即可免費登記參加！(如需個人子母機或語音機租借費另計約 $30~$100)",
       "events": "特定節慶（如 518 國際博物館日、文化古蹟日）常有全體免票或特展聯票優惠，詳情洽官網。"
-    }
+    },
+    "embedStatus": "embeddable",
+    "canEmbed": true
   },
   {
     "id": "tn-nmtl",
@@ -2509,7 +2641,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "全面免門票（無門檻開放大眾參觀）",
       "tourFee": "定時真人導覽：完全免費（志工/解說員定時帶領，現場自由集合參加）",
       "events": "常態性文史走讀活動，若有特展或節慶參訪均免費開放。"
-    }
+    },
+    "embedStatus": "embeddable",
+    "canEmbed": true
   },
   {
     "id": "tn-chihkan",
@@ -2545,7 +2679,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "免費優待 $0 (65歲以上長者平日/部分假日、學齡前幼童、身心障礙者及陪伴者1人憑證)",
       "tourFee": "定時真人導覽：持入館門票即可免費登記參加！(如需個人子母機或語音機租借費另計約 $30~$100)",
       "events": "特定節慶（如 518 國際博物館日、文化古蹟日）常有全體免票或特展聯票優惠，詳情洽官網。"
-    }
+    },
+    "embedStatus": "blocked",
+    "canEmbed": false
   },
   {
     "id": "tn-shanshang-water",
@@ -2582,7 +2718,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "免費優待 $0 (65歲以上長者平日/部分假日、學齡前幼童、身心障礙者及陪伴者1人憑證)",
       "tourFee": "定時真人導覽：持入館門票即可免費登記參加！(如需個人子母機或語音機租借費另計約 $30~$100)",
       "events": "特定節慶（如 518 國際博物館日、文化古蹟日）常有全體免票或特展聯票優惠，詳情洽官網。"
-    }
+    },
+    "embedStatus": "blocked",
+    "canEmbed": false
   },
   {
     "id": "tn-nmth",
@@ -2619,7 +2757,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "免費優待 $0 (65歲以上長者平日/部分假日、學齡前幼童、身心障礙者及陪伴者1人憑證)",
       "tourFee": "定時真人導覽：持入館門票即可免費登記參加！(如需個人子母機或語音機租借費另計約 $30~$100)",
       "events": "特定節慶（如 518 國際博物館日、文化古蹟日）常有全體免票或特展聯票優惠，詳情洽官網。"
-    }
+    },
+    "embedStatus": "embeddable",
+    "canEmbed": true
   },
   {
     "id": "tn-confucius",
@@ -2655,7 +2795,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "免費優待 $0 (65歲以上長者平日/部分假日、學齡前幼童、身心障礙者及陪伴者1人憑證)",
       "tourFee": "定時真人導覽：持入館門票即可免費登記參加！(如需個人子母機或語音機租借費另計約 $30~$100)",
       "events": "特定節慶（如 518 國際博物館日、文化古蹟日）常有全體免票或特展聯票優惠，詳情洽官網。"
-    }
+    },
+    "embedStatus": "no_web",
+    "canEmbed": false
   },
   {
     "id": "kh-foguangshan-buddha",
@@ -2692,7 +2834,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "全面免門票（無門檻開放大眾參觀）",
       "tourFee": "定時真人導覽：完全免費（志工/解說員定時帶領，現場自由集合參加）",
       "events": "常態性文史走讀活動，若有特展或節慶參訪均免費開放。"
-    }
+    },
+    "embedStatus": "embeddable",
+    "canEmbed": true
   },
   {
     "id": "kh-british-consulate",
@@ -2712,7 +2856,7 @@ const DEFAULT_TOURS_DATA = [
     "priceType": "免費 (持門票)",
     "price": "全票 $99 (高雄市民優惠)，每日提供專人定時導覽",
     "summary": "全台灣現存年代最久遠的西方近代建築！登山頂領事官邸眺望西子灣落日與高雄港大船入港，沿著百年登山古道走到山下領事館辦公廳，解說員解析十九世紀開港通商與栩栩如生的一比一情境蠟像。",
-    "officialUrl": "https://culture.khcg.gov.tw/",
+    "officialUrl": "https://britishconsulate.kcg.gov.tw/",
     "closedDays": [
       1
     ],
@@ -2730,7 +2874,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "免費優待 $0 (65歲以上長者平日/部分假日、學齡前幼童、身心障礙者及陪伴者1人憑證)",
       "tourFee": "定時真人導覽：持入館門票即可免費登記參加！(如需個人子母機或語音機租借費另計約 $30~$100)",
       "events": "特定節慶（如 518 國際博物館日、文化古蹟日）常有全體免票或特展聯票優惠，詳情洽官網。"
-    }
+    },
+    "embedStatus": "blocked",
+    "canEmbed": false
   },
   {
     "id": "kh-kmfa",
@@ -2767,7 +2913,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "免費優待 $0 (65歲以上長者平日/部分假日、學齡前幼童、身心障礙者及陪伴者1人憑證)",
       "tourFee": "定時真人導覽：持入館門票即可免費登記參加！(如需個人子母機或語音機租借費另計約 $30~$100)",
       "events": "特定節慶（如 518 國際博物館日、文化古蹟日）常有全體免票或特展聯票優惠，詳情洽官網。"
-    }
+    },
+    "embedStatus": "embeddable",
+    "canEmbed": true
   },
   {
     "id": "kh-pier2",
@@ -2802,7 +2950,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "全面免門票（無門檻開放大眾參觀）",
       "tourFee": "定時真人導覽：完全免費（志工/解說員定時帶領，現場自由集合參加）",
       "events": "常態性文史走讀活動，若有特展或節慶參訪均免費開放。"
-    }
+    },
+    "embedStatus": "blocked",
+    "canEmbed": false
   },
   {
     "id": "kh-history-museum",
@@ -2839,7 +2989,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "全面免門票（無門檻開放大眾參觀）",
       "tourFee": "定時真人導覽：完全免費（志工/解說員定時帶領，現場自由集合參加）",
       "events": "常態性文史走讀活動，若有特展或節慶參訪均免費開放。"
-    }
+    },
+    "embedStatus": "blocked",
+    "canEmbed": false
   },
   {
     "id": "pt-nmmba",
@@ -2877,7 +3029,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "免費優待 $0 (65歲以上長者平日/部分假日、學齡前幼童、身心障礙者及陪伴者1人憑證)",
       "tourFee": "定時真人導覽：持入館門票即可免費登記參加！(如需個人子母機或語音機租借費另計約 $30~$100)",
       "events": "特定節慶（如 518 國際博物館日、文化古蹟日）常有全體免票或特展聯票優惠，詳情洽官網。"
-    }
+    },
+    "embedStatus": "blocked",
+    "canEmbed": false
   },
   {
     "id": "pt-shengli",
@@ -2896,7 +3050,7 @@ const DEFAULT_TOURS_DATA = [
     "priceType": "完全免費",
     "price": "免門票，常態由屏東縣文化局志工提供眷村文史走讀",
     "summary": "全台灣保存規模最大、最完整的日式陸軍飛行第八聯隊將軍眷村群！六十九棟木造日式官舍修復改建。導覽員帶你漫步孫立人將軍行館、眷村防空洞、紅磚庭院與防空綠籬，品嚐屏東在地獨立可可老宅咖啡。",
-    "officialUrl": "https://cultural.pthg.gov.tw/",
+    "officialUrl": "https://www.facebook.com/victorystarinpingtung",
     "closedDays": [
       2
     ],
@@ -2914,7 +3068,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "全面免門票（無門檻開放大眾參觀）",
       "tourFee": "定時真人導覽：完全免費（志工/解說員定時帶領，現場自由集合參加）",
       "events": "常態性文史走讀活動，若有特展或節慶參訪均免費開放。"
-    }
+    },
+    "embedStatus": "blocked",
+    "canEmbed": false
   },
   {
     "id": "pt-henchun-ancient",
@@ -2949,7 +3105,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "全面免門票（無門檻開放大眾參觀）",
       "tourFee": "定時真人導覽：完全免費（志工/解說員定時帶領，現場自由集合參加）",
       "events": "常態性文史走讀活動，若有特展或節慶參訪均免費開放。"
-    }
+    },
+    "embedStatus": "no_web",
+    "canEmbed": false
   },
   {
     "id": "pt-hakka-cultural",
@@ -2986,7 +3144,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "全面免門票（無門檻開放大眾參觀）",
       "tourFee": "定時真人導覽：完全免費（志工/解說員定時帶領，現場自由集合參加）",
       "events": "常態性文史走讀活動，若有特展或節慶參訪均免費開放。"
-    }
+    },
+    "embedStatus": "blocked",
+    "canEmbed": false
   },
   {
     "id": "hl-taroko",
@@ -3021,7 +3181,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "全面免門票（無門檻開放大眾參觀）",
       "tourFee": "定時真人導覽：完全免費（志工/解說員定時帶領，現場自由集合參加）",
       "events": "常態性文史走讀活動，若有特展或節慶參訪均免費開放。"
-    }
+    },
+    "embedStatus": "embeddable",
+    "canEmbed": true
   },
   {
     "id": "hl-creative",
@@ -3040,7 +3202,7 @@ const DEFAULT_TOURS_DATA = [
     "priceType": "完全免費",
     "price": "免門票，例假日提供專人定時帶領古蹟巡禮",
     "summary": "坐落於花蓮市中心的百年舊酒廠！廿六棟和洋歷史木構倉庫修復改建。導覽員帶你穿梭日治釀酒工場、木造洗瓶室、高聳水泥酒槽，細說花蓮早年紅露酒飄香與東台灣現代工業化歷史。",
-    "officialUrl": "https://hualienart.org.tw/",
+    "officialUrl": "https://hualien1913.nat.gov.tw/",
     "closedDays": [
       1
     ],
@@ -3058,7 +3220,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "全面免門票（無門檻開放大眾參觀）",
       "tourFee": "定時真人導覽：完全免費（志工/解說員定時帶領，現場自由集合參加）",
       "events": "常態性文史走讀活動，若有特展或節慶參訪均免費開放。"
-    }
+    },
+    "embedStatus": "embeddable",
+    "canEmbed": true
   },
   {
     "id": "hl-qingxiu",
@@ -3095,7 +3259,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "免費優待 $0 (65歲以上長者平日/部分假日、學齡前幼童、身心障礙者及陪伴者1人憑證)",
       "tourFee": "定時真人導覽：持入館門票即可免費登記參加！(如需個人子母機或語音機租借費另計約 $30~$100)",
       "events": "特定節慶（如 518 國際博物館日、文化古蹟日）常有全體免票或特展聯票優惠，詳情洽官網。"
-    }
+    },
+    "embedStatus": "embeddable",
+    "canEmbed": true
   },
   {
     "id": "tt-nmp",
@@ -3132,7 +3298,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "免費優待 $0 (65歲以上長者平日/部分假日、學齡前幼童、身心障礙者及陪伴者1人憑證)",
       "tourFee": "定時真人導覽：持入館門票即可免費登記參加！(如需個人子母機或語音機租借費另計約 $30~$100)",
       "events": "特定節慶（如 518 國際博物館日、文化古蹟日）常有全體免票或特展聯票優惠，詳情洽官網。"
-    }
+    },
+    "embedStatus": "embeddable",
+    "canEmbed": true
   },
   {
     "id": "tt-peinan",
@@ -3169,7 +3337,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "全面免門票（無門檻開放大眾參觀）",
       "tourFee": "定時真人導覽：完全免費（志工/解說員定時帶領，現場自由集合參加）",
       "events": "常態性文史走讀活動，若有特展或節慶參訪均免費開放。"
-    }
+    },
+    "embedStatus": "embeddable",
+    "canEmbed": true
   },
   {
     "id": "tt-chishang-rice",
@@ -3206,7 +3376,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "全面免門票（無門檻開放大眾參觀）",
       "tourFee": "定時真人導覽：完全免費（志工/解說員定時帶領，現場自由集合參加）",
       "events": "常態性文史走讀活動，若有特展或節慶參訪均免費開放。"
-    }
+    },
+    "embedStatus": "no_web",
+    "canEmbed": false
   },
   {
     "id": "ph-living-museum",
@@ -3243,7 +3415,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "免費優待 $0 (65歲以上長者平日/部分假日、學齡前幼童、身心障礙者及陪伴者1人憑證)",
       "tourFee": "定時真人導覽：持入館門票即可免費登記參加！(如需個人子母機或語音機租借費另計約 $30~$100)",
       "events": "特定節慶（如 518 國際博物館日、文化古蹟日）常有全體免票或特展聯票優惠，詳情洽官網。"
-    }
+    },
+    "embedStatus": "blocked",
+    "canEmbed": false
   },
   {
     "id": "ph-magong-tianhou",
@@ -3278,7 +3452,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "全面免門票（無門檻開放大眾參觀）",
       "tourFee": "定時真人導覽：完全免費（志工/解說員定時帶領，現場自由集合參加）",
       "events": "常態性文史走讀活動，若有特展或節慶參訪均免費開放。"
-    }
+    },
+    "embedStatus": "blocked",
+    "canEmbed": false
   },
   {
     "id": "km-zhaishan",
@@ -3313,7 +3489,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "全面免門票（無門檻開放大眾參觀）",
       "tourFee": "定時真人導覽：完全免費（志工/解說員定時帶領，現場自由集合參加）",
       "events": "常態性文史走讀活動，若有特展或節慶參訪均免費開放。"
-    }
+    },
+    "embedStatus": "embeddable",
+    "canEmbed": true
   },
   {
     "id": "km-shuitou",
@@ -3348,7 +3526,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "全面免門票（無門檻開放大眾參觀）",
       "tourFee": "定時真人導覽：完全免費（志工/解說員定時帶領，現場自由集合參加）",
       "events": "常態性文史走讀活動，若有特展或節慶參訪均免費開放。"
-    }
+    },
+    "embedStatus": "embeddable",
+    "canEmbed": true
   },
   {
     "id": "km-kinmen-civil",
@@ -3383,7 +3563,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "全面免門票（無門檻開放大眾參觀）",
       "tourFee": "定時真人導覽：完全免費（志工/解說員定時帶領，現場自由集合參加）",
       "events": "常態性文史走讀活動，若有特展或節慶參訪均免費開放。"
-    }
+    },
+    "embedStatus": "embeddable",
+    "canEmbed": true
   },
   {
     "id": "matsu-baba",
@@ -3418,7 +3600,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "全面免門票（無門檻開放大眾參觀）",
       "tourFee": "定時真人導覽：完全免費（志工/解說員定時帶領，現場自由集合參加）",
       "events": "常態性文史走讀活動，若有特展或節慶參訪均免費開放。"
-    }
+    },
+    "embedStatus": "blocked",
+    "canEmbed": false
   },
   {
     "id": "matsu-qinbi",
@@ -3453,7 +3637,9 @@ const DEFAULT_TOURS_DATA = [
       "free": "全面免門票（無門檻開放大眾參觀）",
       "tourFee": "定時真人導覽：完全免費（志工/解說員定時帶領，現場自由集合參加）",
       "events": "常態性文史走讀活動，若有特展或節慶參訪均免費開放。"
-    }
+    },
+    "embedStatus": "blocked",
+    "canEmbed": false
   }
 ];
 

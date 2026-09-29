@@ -242,6 +242,24 @@
               👉 前往真人導覽詳情 & 票價
             </button>
           </div>
+
+          <!-- 官網資安防護直通卡片 (當目標官網不允許跨域嵌入時顯示，徹底取代瀏覽器拒絕連線報錯) -->
+          <div class="official-blocked-card hidden" id="official-blocked-container">
+            <div class="blocked-badge-icon">🛡️</div>
+            <h4 class="blocked-card-title">本館啟用資安跨域保護機制</h4>
+            <div class="blocked-card-site" id="blocked-card-site">場館官方網站</div>
+            <p class="blocked-card-desc">
+              為守護公眾資訊安全，該館伺服器設定了防止第三方內嵌政策（X-Frame-Options）。請點擊下方按鈕，在安全的新分頁中直通完整官網！
+            </p>
+            <div class="blocked-card-actions">
+              <a href="#" target="_blank" class="btn-portal-launch" id="btn-portal-launch">
+                🚀 直通官方網站首頁 ↗
+              </a>
+              <button class="btn-portal-info" id="btn-portal-info" onclick="window.app.switchOfficialTab('info')">
+                📋 查看整理好的真人導覽與票價
+              </button>
+            </div>
+          </div>
         </div>
 
         <!-- 視圖 2: 精選真人導覽與完整票價明細 (當使用者想看純文字整理或官網被擋時) -->
