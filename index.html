@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <title>台灣真人導覽地圖 👫 - 情侶專屬全台導覽搜尋與即時同步</title>
+  
+  <!-- 響應式與 iPhone 視窗設定 (支援瀏海與動態島 Safe Area) -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  
+  <!-- iPhone PWA 規格與自訂情侶圖標 -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="真人導覽">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="icon" type="image/jpeg" href="icon.jpg">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#FAF7F2">
+
+  <!-- Google Fonts 質感字型 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Leaflet 地圖樣式 (100% 完全免費) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  
+  <!-- 質感溫馨樣式表 -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app-container">
+    
+    <!-- 頂部精緻導航列 -->
+    <header class="app-header">
+      <div class="brand-section">
+        <img src="apple-touch-icon.png" alt="情侶台灣導覽" class="app-avatar-icon">
+        <div class="app-title-group">
+          <div class="title-row">
+            <h1 class="app-title">台灣真人導覽地圖</h1>
+            <span class="heart-icon">💛</span>
+          </div>
+          <div class="app-subtitle">
+            <span class="room-pill" id="btn-room-trigger" title="點擊切換同步房間">
+              💞 <span id="current-room-badge">sweet-couple-tour</span>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <!-- 回到目前定位點快速鍵 -->
+        <button class="btn-chip" id="btn-recenter" title="將地圖視角平滑拉回目前的定位點">
+          🎯 <span class="hide-mobile">回到定位點</span>
+        </button>
+        <button class="btn-header" id="btn-open-schedule" title="查看兩人共享日程">
+          📅 <span class="hide-mobile">行程</span>
+        </button>
+        <button class="btn-header" id="btn-open-add-tour" title="新增自訂導覽景點">
+          ➕ <span class="hide-mobile">新增</span>
+        </button>
+        <button class="btn-header" id="btn-open-settings" title="兩人同步設定">
+          ⚙️
+        </button>
+        <button class="btn-header btn-header-fav" id="btn-open-favs" title="打開收藏抽屜">
+          💛 <span>收藏</span>
+          <span class="badge-counter" id="fav-count-badge" style="display:none;">0</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- 浮動控制面板：極簡搜尋與即時篩選列 (Apple Maps 質感玻璃態) -->
+    <div class="floating-search-container">
+      
+      <!-- 主搜尋列 -->
+      <div class="main-search-card">
+        <div class="search-input-wrap">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="search-input" class="search-input" placeholder="搜尋全台地點 (例如: 宜蘭傳藝、台南孔廟、大溪)...">
+        </div>
+        <button id="btn-search" class="btn-search-pill" title="搜尋地點周邊5公里">5km雷達</button>
+        <button id="btn-gps" class="btn-gps-pill" title="定位當前位置周邊5公里">
+          📍 <span class="hide-mobile">定位附近</span>
+        </button>
+      </div>
+
+      <!-- 快速篩選膠囊列 -->
+      <div class="filter-chips-scroll">
+        <div class="select-pill-wrap">
+          <select id="county-select" class="chip-select">
+            <!-- 由 JS 動態產生全台灣 22 縣市選單 -->
+          </select>
+        </div>
+
+        <div class="select-pill-wrap">
+          <select id="time-filter-select" class="chip-select">
+            <option value="all">🕒 全部時段</option>
+            <option value="open-today">🟢 今日開館 (排除休館)</option>
+            <option value="upcoming">⏳ 今日即將開始</option>
+            <option value="morning">🌅 上午場 (12:00前)</option>
+            <option value="afternoon">🌇 下午場 (12:00後)</option>
+            <option value="free">💰 免費真人導覽</option>
+          </select>
+        </div>
+
+        <button class="chip-btn" id="btn-quick-today" data-filter="open-today">
+          🟢 今日有開
+        </button>
+        <button class="chip-btn" id="btn-quick-free" data-filter="free">
+          💰 免費導覽
+        </button>
+      </div>
+
+      <!-- 5公里雷達啟動時的浮動提示膠囊 -->
+      <div class="radar-pill-banner hidden" id="radar-info-bar">
+        <div class="radar-info-content">
+          <span class="radar-live-dot"></span>
+          <span id="radar-text" class="radar-text-label">已鎖定搜尋周邊 5 公里</span>
+        </div>
+        <div class="radius-toggle-group" id="radius-group">
+          <button class="radius-btn" data-radius="3">3km</button>
+          <button class="radius-btn active" data-radius="5">5km</button>
+          <button class="radius-btn" data-radius="10">10km</button>
+        </div>
+        <button class="btn-close-radar" id="btn-clear-radar" title="取消雷達，恢復全台檢視">✕</button>
+      </div>
+
+    </div>
+
+    <!-- 地圖主畫布 (載入台灣通用電子地圖與ESRI圖資，0金鑰0水印) -->
+    <div id="map"></div>
+
+    <!-- Google Maps 經典浮動定位按鈕 (FAB) -->
+    <button class="btn-floating-location" id="btn-floating-gps" title="定位到我的目前位置 (Google Maps風格)" aria-label="即時定位">
+      <svg class="location-icon" viewBox="0 0 24 24" width="22" height="22">
+        <path fill="currentColor" d="M12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm8.94 3A8.994 8.994 0 0 0 13 3.06V1h-2v2.06A8.994 8.994 0 0 0 3.06 11H1v2h2.06A8.994 8.994 0 0 0 11 20.94V23h2v-2.06A8.994 8.994 0 0 0 20.94 13H23v-2h-2.06zM12 19c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z"/>
+      </svg>
+      <div class="location-spinner"></div>
+    </button>
+
+    <!-- 底部懸浮式景點卡片面板 (Apple Maps 質感底部抽屜) -->
+    <section class="floating-bottom-sheet collapsed" id="spots-sheet">
+      <div class="sheet-drag-handle" id="sheet-handle">
+        <div class="drag-bar"></div>
+        <div class="sheet-summary-row">
+          <div class="summary-left">
+            <span class="sheet-badge-icon">🎙️</span>
+            <span class="sheet-title-text">真人導覽景點</span>
+            <span class="badge-count-pill" id="spots-count-text">載入中...</span>
+          </div>
+          <button class="btn-sheet-toggle" id="btn-toggle-list">🔼 展開景點列表</button>
+        </div>
+      </div>
+      
+      <!-- 景點內容滾動區 -->
+      <div class="spots-list-scroll" id="spots-list-container">
+        <!-- 由 JS 依篩選條件動態產生 -->
+      </div>
+    </section>
+
+    <!-- 右側縣市分類收藏抽屜 (Favorites Drawer) -->
+    <div class="fav-overlay" id="fav-overlay"></div>
+    <aside class="fav-drawer" id="fav-drawer">
+      <div class="fav-drawer-header">
+        <div class="fav-drawer-title">
+          <span>💛</span>
+          <span>我們的收藏清單</span>
+        </div>
+        <button class="btn-close-drawer" id="btn-close-favs">✕</button>
+      </div>
+      <div class="fav-list-container" id="fav-list-container">
+        <!-- 由 JS 依縣市分組動態渲染 -->
+      </div>
+    </aside>
+
+    <!-- 彈窗 1：新增/編輯自訂導覽景點 -->
+    <div class="modal hidden" id="modal-tour">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>➕ 新增真人導覽景點</h3>
+          <button class="btn-close-modal" id="btn-close-tour-modal">✕</button>
+        </div>
+        <form id="tour-form">
+          <div class="modal-body">
+            <div class="form-group">
+              <label>景點名稱 *</label>
+              <input type="text" id="form-name" class="form-input" placeholder="例如：國立故宮博物院" required>
+            </div>
+            <div class="form-row">
+              <div class="form-group" style="flex:1;">
+                <label>縣市 *</label>
+                <select id="form-county" class="form-select">
+                  <option value="台北市">台北市</option>
+                  <option value="新北市">新北市</option>
+                  <option value="基隆市">基隆市</option>
+                  <option value="桃園市">桃園市</option>
+                  <option value="新竹市">新竹市</option>
+                  <option value="新竹縣">新竹縣</option>
+                  <option value="苗栗縣">苗栗縣</option>
+                  <option value="台中市">台中市</option>
+                  <option value="彰化縣">彰化縣</option>
+                  <option value="南投縣">南投縣</option>
+                  <option value="雲林縣">雲林縣</option>
+                  <option value="嘉義市">嘉義市</option>
+                  <option value="嘉義縣">嘉義縣</option>
+                  <option value="台南市">台南市</option>
+                  <option value="高雄市">高雄市</option>
+                  <option value="屏東縣">屏東縣</option>
+                  <option value="宜蘭縣">宜蘭縣</option>
+                  <option value="花蓮縣">花蓮縣</option>
+                  <option value="台東縣">台東縣</option>
+                  <option value="澎湖縣">澎湖縣</option>
+                  <option value="金門縣">金門縣</option>
+                  <option value="連江縣">連江縣</option>
+                </select>
+              </div>
+              <div class="form-group" style="flex:1;">
+                <label>鄉鎮市區</label>
+                <input type="text" id="form-district" class="form-input" placeholder="例如：士林區">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>地址</label>
+              <input type="text" id="form-address" class="form-input" placeholder="完整地址">
+            </div>
+            <div class="form-row">
+              <div class="form-group" style="flex:1;">
+                <label>緯度 (Lat) *</label>
+                <input type="number" step="any" id="form-lat" class="form-input" placeholder="25.1023" required>
+              </div>
+              <div class="form-group" style="flex:1;">
+                <label>經度 (Lng) *</label>
+                <input type="number" step="any" id="form-lng" class="form-input" placeholder="121.5485" required>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group" style="flex:1;">
+                <label>導覽場次 (逗號隔開)</label>
+                <input type="text" id="form-schedule" class="form-input" placeholder="10:30, 14:30">
+              </div>
+              <div class="form-group" style="flex:1;">
+                <label>導覽長度</label>
+                <input type="text" id="form-duration" class="form-input" placeholder="約 50 分鐘">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group" style="flex:1;">
+                <label>費用與票價說明</label>
+                <input type="text" id="form-price" class="form-input" placeholder="例如：持門票免費 / 專人導覽 $150">
+              </div>
+              <div class="form-group" style="flex:1;">
+                <label>休館說明</label>
+                <input type="text" id="form-closed" class="form-input" placeholder="每週一休館">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>🎙️ 真人導覽內容概述 *</label>
+              <textarea id="form-summary" class="form-textarea" rows="3" placeholder="請概述專人解說的亮點、走讀路線或特色背景..." required></textarea>
+            </div>
+            <div class="form-group">
+              <label>🔗 官方導覽原網頁網址</label>
+              <input type="url" id="form-url" class="form-input" placeholder="https://...">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn-secondary" onclick="window.app.closeAddTourModal()">取消</button>
+            <button type="submit" class="btn-primary">儲存並同步景點</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- 彈窗 2：兩人共享行程視窗 -->
+    <div class="modal hidden" id="modal-schedule">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>📅 兩人共享導覽行程</h3>
+          <button class="btn-close-modal" id="btn-close-schedule">✕</button>
+        </div>
+        <div class="modal-body" id="schedule-list-container">
+          <!-- 行程項目動態渲染 -->
+        </div>
+        <div class="modal-footer">
+          <button class="btn-secondary" onclick="window.app.closeScheduleModal()">關閉</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 彈窗 3：兩人即時同步設定 (房間代碼 + 雲端狀態) -->
+    <div class="modal hidden" id="modal-settings">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>⚙️ 兩人即時同步設定</h3>
+          <button class="btn-close-modal" id="btn-close-settings">✕</button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label>連線狀態：</label>
+            <div id="cloud-status-indicator" style="font-size:13px; margin-bottom:8px;"></div>
+          </div>
+
+          <div class="form-group">
+            <label>👫 兩人專屬同步房間代碼：</label>
+            <div style="display:flex; gap:8px;">
+              <input type="text" id="input-room-code" class="form-input" placeholder="例如: sweet-tour">
+              <button class="btn-primary" id="btn-save-room-code" style="white-space:nowrap;">儲存配對</button>
+            </div>
+            <p class="form-hint">
+              💡 只要在女朋友的手機或電腦上也輸入相同的房間代碼，兩人的收藏、新增景點與預定行程就會即時同步！
+            </p>
+          </div>
+
+          <hr style="border:none; border-top:1px dashed #E2D3C4; margin:16px 0;">
+
+          <div class="form-group">
+            <label>🔄 全台真人導覽資料庫即時更新：</label>
+            <div style="display:flex; gap:8px; margin-top:6px;">
+              <button type="button" class="btn-primary" id="btn-sync-database" style="flex:1;">
+                🔄 立即檢查並更新景點資料庫
+              </button>
+            </div>
+            <p class="form-hint" id="db-status-hint">
+              ✨ 系統已全面擴充全台 22 縣市超過 90 處國家級場館、文化古蹟、名剎寺廟（含中台世界博物館）真人導覽！
+            </p>
+          </div>
+
+          <hr style="border:none; border-top:1px dashed #E2D3C4; margin:16px 0;">
+
+          <div class="form-group">
+            <label>💾 資料備份與還原：</label>
+            <div style="display:flex; gap:8px; margin-top:6px;">
+              <button class="btn-secondary" id="btn-export-json" style="flex:1;">匯出備份 JSON</button>
+              <label class="btn-secondary" style="flex:1; text-align:center; cursor:pointer;">
+                匯入備份
+                <input type="file" id="file-import-json" accept=".json" style="display:none;">
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn-secondary" onclick="window.app.closeSettingsModal()">關閉</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- iPhone PWA 加入主畫面小提示 -->
+    <div class="ios-banner hidden" id="ios-install-banner">
+      <div class="ios-banner-text">
+        <strong>📱 放在 iPhone 桌面隨開隨用！</strong>
+        點擊下方 Safari 的「分享」按鈕 ➜ 選擇「加入主畫面」，即可像原生 App 一樣無網址列全螢幕使用。
+      </div>
+      <button class="btn-dismiss-banner" id="btn-dismiss-ios-banner">我知道了</button>
+    </div>
+
+    <!-- 溫馨 Toast 浮動提示 -->
+    <div class="toast" id="toast"></div>
+
+  </div>
+
+  <!-- Leaflet 地圖核心 JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+  <!-- Firebase 核心與 Realtime Database (支援兩人雲端同步) -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+
+  <!-- MQTT 即時推播 (支援手機跨機 0 設定即時雙向同步) -->
+  <script src="https://unpkg.com/mqtt@5.3.5/dist/mqtt.min.js"></script>
+
+  <!-- 本地邏輯模組 -->
+  <script src="js/data.js"></script>
+  <script src="js/sync.js"></script>
+  <script src="js/calendar.js"></script>
+  <script src="js/map.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
