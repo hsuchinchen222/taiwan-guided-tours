@@ -103,6 +103,31 @@ class TourApp {
       btnCloseSchedule: document.getElementById("btn-close-schedule"),
       scheduleListContainer: document.getElementById("schedule-list-container"),
 
+      // 景點官網即時互動抽屜
+      officialDrawer: document.getElementById("official-drawer"),
+      officialOverlay: document.getElementById("official-overlay"),
+      officialTourName: document.getElementById("official-tour-name"),
+      officialCountyBadge: document.getElementById("official-county-badge"),
+      officialStatusBadge: document.getElementById("official-status-badge"),
+      officialMetaSchedule: document.getElementById("official-meta-schedule"),
+      officialMetaPrice: document.getElementById("official-meta-price"),
+      btnOfficialFav: document.getElementById("btn-official-fav"),
+      officialFavIcon: document.getElementById("official-fav-icon"),
+      btnOfficialCal: document.getElementById("btn-official-cal"),
+      btnOfficialExternal: document.getElementById("btn-official-external"),
+      btnCloseOfficial: document.getElementById("btn-close-official"),
+      tabOfficialWeb: document.getElementById("tab-official-web"),
+      tabOfficialInfo: document.getElementById("tab-official-info"),
+      officialViewWeb: document.getElementById("official-view-web"),
+      officialViewInfo: document.getElementById("official-view-info"),
+      officialIframe: document.getElementById("official-iframe"),
+      officialLoading: document.getElementById("official-loading"),
+      officialIframeNotice: document.getElementById("official-iframe-notice"),
+      officialNoWebBadge: document.getElementById("official-no-web-badge"),
+      officialNoWebContainer: document.getElementById("official-no-web-container"),
+      noticeExternalLink: document.getElementById("notice-external-link"),
+      officialInfoContainer: document.getElementById("official-info-container"),
+
       // Toast 溫馨通知
       toast: document.getElementById("toast")
     };
@@ -119,6 +144,11 @@ class TourApp {
         this.dom.btnFloatingGps.classList.toggle("active", isAtUser);
       }
       this.applyFilters();
+    };
+
+    // 點擊地標時，完全靜止地圖，直接在右側滑出官網即時互動視窗
+    this.mapCtrl.onSpotSelected = (tour) => {
+      this.openOfficialDrawer(tour);
     };
   }
 
@@ -362,6 +392,41 @@ class TourApp {
         reader.readAsText(file);
       });
     }
+
+    // 景點官網即時互動抽屜事件
+    if (this.dom.btnCloseOfficial) {
+      this.dom.btnCloseOfficial.addEventListener("click", () => this.closeOfficialDrawer());
+    }
+    if (this.dom.officialOverlay) {
+      this.dom.officialOverlay.addEventListener("click", () => this.closeOfficialDrawer());
+    }
+    if (this.dom.tabOfficialWeb) {
+      this.dom.tabOfficialWeb.addEventListener("click", () => this.switchOfficialTab("web"));
+    }
+    if (this.dom.tabOfficialInfo) {
+      this.dom.tabOfficialInfo.addEventListener("click", () => this.switchOfficialTab("info"));
+    }
+    if (this.dom.btnOfficialFav) {
+      this.dom.btnOfficialFav.addEventListener("click", () => {
+        if (this.activeOfficialTour) {
+          this.toggleFavorite(this.activeOfficialTour.id);
+          const isFav = window.tourSync.isFavorite(this.activeOfficialTour.id);
+          this.dom.officialFavIcon.innerText = isFav ? "💛" : "🤍";
+        }
+      });
+    }
+    if (this.dom.btnOfficialCal) {
+      this.dom.btnOfficialCal.addEventListener("click", () => {
+        if (this.activeOfficialTour) {
+          this.addToCalendar(this.activeOfficialTour.id);
+        }
+      });
+    }
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        this.closeOfficialDrawer();
+      }
+    });
   }
 
   toggleBottomSheet() {
@@ -625,7 +690,7 @@ class TourApp {
 
           <div class="spot-card-actions">
             <a href="${gmapsUrl}" target="_blank" class="btn btn-sm btn-gmaps">🗺️ Google 導航</a>
-            ${t.officialUrl ? `<a href="${t.officialUrl}" target="_blank" class="btn btn-sm btn-official">🔗 官網詳情</a>` : ''}
+            ${t.officialUrl ? `<button type="button" class="btn btn-sm btn-official" onclick="window.app.focusSpotById('${t.id}')">🌐 官網即時看</button>` : `<button type="button" class="btn btn-sm btn-official btn-no-web" onclick="window.app.focusSpotById('${t.id}')" title="本景點沒有官方網站，點此查看導覽詳情">🚫 沒有官方網站</button>`}
             <button class="btn btn-sm btn-share" onclick="window.TourShareAndCalendar.shareToPartner(window.app.getTourById('${t.id}'))">📲 LINE 分享</button>
             <button class="btn btn-sm btn-cal" onclick="window.app.addToCalendar('${t.id}')">📅 加行事曆</button>
           </div>
@@ -782,6 +847,210 @@ class TourApp {
   closeFavDrawer() {
     this.dom.favDrawer.classList.remove("open");
     this.dom.favOverlay.classList.remove("open");
+  }
+
+  // 開啟右側景點官網即時互動視窗
+  openOfficialDrawer(tour) {
+    if (!tour) return;
+    this.activeOfficialTour = tour;
+
+    // 關閉收藏抽屜以防重疊
+    this.closeFavDrawer();
+
+    // 更新抬頭名稱與狀態標籤
+    this.dom.officialTourName.innerText = tour.name;
+    this.dom.officialCountyBadge.innerText = `📍 ${tour.county} · ${tour.district || ''}`;
+    
+    const status = tour._todayStatus || TourApp.getTodayUpcomingStatus(tour);
+    this.dom.officialStatusBadge.innerText = status.text;
+    this.dom.officialStatusBadge.className = `badge ${status.isClosed ? 'badge-closed' : 'badge-open'}`;
+
+    const scheduleText = Array.isArray(tour.schedule) ? tour.schedule.join('、') : (tour.schedule || '詳洽官網');
+    this.dom.officialMetaSchedule.innerText = `⏰ ${scheduleText}`;
+    this.dom.officialMetaPrice.innerText = `💰 ${tour.price || '免費'}`;
+
+    // 更新收藏圖示
+    const isFav = window.tourSync.isFavorite(tour.id);
+    this.dom.officialFavIcon.innerText = isFav ? "💛" : "🤍";
+
+    // 渲染詳細資訊頁面
+    this.dom.officialInfoContainer.innerHTML = this.renderOfficialInfo(tour);
+
+    // 判斷是否有官方網站
+    const hasOfficialWeb = !!(tour.officialUrl && tour.officialUrl.trim() !== "");
+    
+    if (this.dom.officialNoWebBadge) {
+      this.dom.officialNoWebBadge.classList.toggle("hidden", hasOfficialWeb);
+    }
+
+    if (hasOfficialWeb) {
+      this.dom.tabOfficialWeb.innerText = "🌐 官方網站首頁 (可直接點擊操作)";
+      this.dom.tabOfficialWeb.style.display = "flex";
+      this.dom.btnOfficialExternal.href = tour.officialUrl;
+      this.dom.btnOfficialExternal.style.display = "inline-flex";
+      this.dom.noticeExternalLink.href = tour.officialUrl;
+
+      if (this.dom.officialIframeNotice) {
+        this.dom.officialIframeNotice.classList.remove("hidden");
+      }
+      if (this.dom.officialNoWebContainer) {
+        this.dom.officialNoWebContainer.classList.add("hidden");
+      }
+
+      this.dom.officialIframe.style.display = "block";
+      this.dom.officialLoading.classList.remove("hidden");
+      this.dom.officialIframe.src = tour.officialUrl;
+
+      this.dom.officialIframe.onload = () => {
+        this.dom.officialLoading.classList.add("hidden");
+      };
+
+      if (this._iframeTimer) clearTimeout(this._iframeTimer);
+      this._iframeTimer = setTimeout(() => {
+        this.dom.officialLoading.classList.add("hidden");
+      }, 3500);
+
+      this.switchOfficialTab("web");
+    } else {
+      this.dom.tabOfficialWeb.innerText = "🌐 官方網站 (無)";
+      this.dom.btnOfficialExternal.style.display = "none";
+      this.dom.officialIframe.src = "about:blank";
+      this.dom.officialIframe.style.display = "none";
+      this.dom.officialLoading.classList.add("hidden");
+
+      if (this.dom.officialIframeNotice) {
+        this.dom.officialIframeNotice.classList.add("hidden");
+      }
+      if (this.dom.officialNoWebContainer) {
+        this.dom.officialNoWebContainer.classList.remove("hidden");
+      }
+
+      // 無官網時直接展示導覽詳情
+      this.switchOfficialTab("info");
+    }
+
+    // 展開右側抽屜
+    this.dom.officialDrawer.classList.add("open");
+    this.dom.officialOverlay.classList.add("open");
+  }
+
+  // 關閉右側官網抽屜
+  closeOfficialDrawer() {
+    this.dom.officialDrawer.classList.remove("open");
+    this.dom.officialOverlay.classList.remove("open");
+    this.dom.officialIframe.src = "about:blank";
+    this.mapCtrl.clearHighlight();
+    this.activeOfficialTour = null;
+  }
+
+  // 切換官網原站互動 vs 導覽簡介與票價頁籤
+  switchOfficialTab(tabName) {
+    if (tabName === "web") {
+      this.dom.tabOfficialWeb.classList.add("active");
+      this.dom.tabOfficialInfo.classList.remove("active");
+      this.dom.officialViewWeb.classList.remove("hidden");
+      this.dom.officialViewInfo.classList.add("hidden");
+    } else {
+      this.dom.tabOfficialInfo.classList.add("active");
+      this.dom.tabOfficialWeb.classList.remove("active");
+      this.dom.officialViewInfo.classList.remove("hidden");
+      this.dom.officialViewWeb.classList.add("hidden");
+    }
+  }
+
+  // 渲染右側抽屜「真人導覽詳情 & 票價」面板內容
+  renderOfficialInfo(tour) {
+    if (!tour) return "";
+    const gmapsUrl = TourShareAndCalendar.getGoogleMapsNavUrl(tour);
+    const scheduleText = Array.isArray(tour.schedule) ? tour.schedule.join('、') : (tour.schedule || '詳洽官網');
+    const status = tour._todayStatus || TourApp.getTodayUpcomingStatus(tour);
+
+    let ticketTiersHtml = "";
+    if (tour.ticketTiers) {
+      ticketTiersHtml = `
+        <div class="official-info-section">
+          <div class="official-info-label">💰 完整票價與優惠明細：</div>
+          <div class="ticket-tiers-box">
+            ${tour.ticketTiers.regular ? `
+              <div class="tier-item tier-reg">
+                <span class="tier-badge">🎟️ 全票</span>
+                <span class="tier-desc">${tour.ticketTiers.regular}</span>
+              </div>
+            ` : ''}
+            ${tour.ticketTiers.concession ? `
+              <div class="tier-item tier-con">
+                <span class="tier-badge">🎓 優待票</span>
+                <span class="tier-desc">${tour.ticketTiers.concession}</span>
+              </div>
+            ` : ''}
+            ${tour.ticketTiers.free ? `
+              <div class="tier-item tier-free">
+                <span class="tier-badge">🧓 免票資格</span>
+                <span class="tier-desc">${tour.ticketTiers.free}</span>
+              </div>
+            ` : ''}
+            ${tour.ticketTiers.tourFee ? `
+              <div class="tier-item tier-tour">
+                <span class="tier-badge">🎙️ 導覽費用</span>
+                <span class="tier-desc">${tour.ticketTiers.tourFee}</span>
+              </div>
+            ` : ''}
+            ${tour.ticketTiers.events ? `
+              <div class="tier-item tier-promo">
+                <span class="tier-badge">🎁 活動與優惠</span>
+                <span class="tier-desc">${tour.ticketTiers.events}</span>
+              </div>
+            ` : ''}
+          </div>
+        </div>
+      `;
+    }
+
+    return `
+      <div class="official-info-section">
+        <div class="official-info-label">🎙️ 真人導覽亮點特色：</div>
+        <div class="official-summary-text">${tour.summary || '現場提供資深專人解說，深度走讀認識在地歷史與展覽。'}</div>
+      </div>
+
+      <div class="official-info-section">
+        <div class="official-info-label">⏰ 場次與時間：</div>
+        <div class="official-grid-meta">
+          <div class="meta-row"><strong>導覽場次：</strong><span>${scheduleText} (${tour.duration || '約45分'})</span></div>
+          <div class="meta-row"><strong>今日狀態：</strong><span>${status.text}</span></div>
+          <div class="meta-row"><strong>休館時間：</strong><span>${tour.closedText || '依官網公告為準'}</span></div>
+        </div>
+      </div>
+
+      ${ticketTiersHtml ? ticketTiersHtml : `
+        <div class="official-info-section">
+          <div class="official-info-label">💰 參觀費用：</div>
+          <div class="official-summary-text">${tour.price || '免費或持參觀門票入場'}</div>
+        </div>
+      `}
+
+      <div class="official-info-section">
+        <div class="official-info-label">📍 地點與聯絡：</div>
+        <div class="official-grid-meta">
+          <div class="meta-row"><strong>館場地址：</strong><span>${tour.address || (tour.county + (tour.district || ''))}</span></div>
+          ${tour.phone ? `<div class="meta-row"><strong>洽詢電話：</strong><span>${tour.phone}</span></div>` : ''}
+        </div>
+      </div>
+
+      <div style="display:flex; gap:8px; margin-top:8px;">
+        <a href="${gmapsUrl}" target="_blank" class="btn-official-direct" style="flex:1; background:#4285F4;" title="開啟 Google Maps 路線導航">
+          🗺️ Google Maps 導航
+        </a>
+        ${tour.officialUrl ? `
+          <a href="${tour.officialUrl}" target="_blank" class="btn-official-direct" style="flex:1;" title="在獨立分頁開啟官網">
+            🔗 開啟官方原網頁 ↗️
+          </a>
+        ` : `
+          <div class="btn-official-direct" style="flex:1; background:#F4EFEB; color:#8E9AAF; border:1px solid #E2DBD2; cursor:default; box-shadow:none; justify-content:center;">
+            🚫 沒有官方網站
+          </div>
+        `}
+      </div>
+    `;
   }
 
   openAddTourModal() {

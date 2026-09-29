@@ -2,3 +2,16 @@
 Thumbs.db
 *.log
 __pycache__/
+
+# 敏感環境變數與安全金鑰防護
+.env
+*.env
+*.key
+*.pem
+*token*
+
+# 臨時分析數據與編輯器暫存
+scripts/url_check_results.json
+*.tmp
+.vscode/
+.idea/

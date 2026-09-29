@@ -371,12 +371,14 @@ class TourMapController {
     tours.forEach(tour => {
       const isFav = isFavoriteFn ? isFavoriteFn(tour.id) : false;
       const isClosed = isClosedTodayFn ? isClosedTodayFn(tour) : false;
+      const isSelected = this.selectedTourId === tour.id;
 
       const favClass = isFav ? "is-favorite" : "";
       const closedClass = isClosed ? "is-closed" : "";
+      const selectedClass = isSelected ? "is-selected" : "";
       
       const customIcon = L.divIcon({
-        className: `custom-spot-marker ${favClass} ${closedClass}`,
+        className: `custom-spot-marker ${favClass} ${closedClass} ${selectedClass}`,
         html: `
           <div class="marker-pin-wrap">
             <div class="marker-bubble">
@@ -392,28 +394,46 @@ class TourMapController {
 
       const marker = L.marker([tour.lat, tour.lng], { icon: customIcon });
 
-      const popupOptions = {
-        autoPan: true,
-        autoPanPaddingTopLeft: L.point(20, this.getTopAvoidanceHeight()),
-        autoPanPaddingBottomRight: L.point(20, 70),
-        closeButton: true,
-        maxWidth: 340,
-        className: "custom-spot-leaflet-popup"
-      };
-
-      marker.bindPopup(() => this.createPopupContent(tour, isFav, isClosed), popupOptions);
-      
-      marker.on("click", () => {
-        const popup = marker.getPopup();
-        if (popup) {
-          popup.options.autoPanPaddingTopLeft = L.point(20, this.getTopAvoidanceHeight());
+      // 點擊地標：絕對靜止零位移，高亮標記並即時在右側開啟官網
+      marker.on("click", (e) => {
+        if (e && e.originalEvent) {
+          L.DomEvent.stopPropagation(e);
         }
+        this.highlightMarker(tour);
         if (this.onSpotSelected) this.onSpotSelected(tour);
       });
 
       this.markersLayer.addLayer(marker);
       tour._marker = marker;
+      if (isSelected) {
+        this.selectedMarkerEl = marker.getElement();
+      }
     });
+  }
+
+  // 高亮選中標記
+  highlightMarker(tour) {
+    this.selectedTourId = tour ? tour.id : null;
+    if (this.selectedMarkerEl) {
+      this.selectedMarkerEl.classList.remove("is-selected");
+      this.selectedMarkerEl = null;
+    }
+    if (tour && tour._marker) {
+      const el = tour._marker.getElement();
+      if (el) {
+        el.classList.add("is-selected");
+        this.selectedMarkerEl = el;
+      }
+    }
+  }
+
+  // 清除高亮
+  clearHighlight() {
+    this.selectedTourId = null;
+    if (this.selectedMarkerEl) {
+      this.selectedMarkerEl.classList.remove("is-selected");
+      this.selectedMarkerEl = null;
+    }
   }
 
   // 建立景點彈窗 HTML
@@ -547,24 +567,23 @@ class TourMapController {
   }
 
   focusSpot(tour) {
-    this._isProgrammaticMove = true;
-    // 考慮上方搜尋面板遮擋，將畫面中心稍微往上微調，使地標對焦時處於畫面偏下位置，上方氣泡完美浮現在搜尋欄下方
-    const topAvoid = this.getTopAvoidanceHeight();
-    const centerOffset = Math.round(topAvoid / 2.2);
-    const targetPoint = this.map.project([tour.lat, tour.lng], 15).subtract([0, -centerOffset]);
-    const targetLatLng = this.map.unproject(targetPoint, 15);
+    if (!tour) return;
+    this.highlightMarker(tour);
 
-    this.map.flyTo(targetLatLng, 15, { duration: 0.8 });
-    setTimeout(() => {
-      this._isProgrammaticMove = false;
-      if (tour._marker) {
-        const popup = tour._marker.getPopup();
-        if (popup) {
-          popup.options.autoPanPaddingTopLeft = L.point(20, this.getTopAvoidanceHeight());
-        }
-        tour._marker.openPopup();
-      }
-    }, 850);
+    // 檢查景點是否在目前視野可見範圍內；如果在範圍內完全不動，徹底避免眼花
+    const bounds = this.map.getBounds();
+    const latLng = L.latLng(tour.lat, tour.lng);
+    if (!bounds.contains(latLng)) {
+      this._isProgrammaticMove = true;
+      this.map.panTo(latLng, { animate: true, duration: 0.4 });
+      setTimeout(() => {
+        this._isProgrammaticMove = false;
+      }, 450);
+    }
+
+    if (this.onSpotSelected) {
+      this.onSpotSelected(tour);
+    }
   }
 
   flyToCounty(countyName) {

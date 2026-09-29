@@ -172,6 +172,87 @@
       </div>
     </aside>
 
+    <!-- 右側景點官網即時互動視窗 (Official Site Live Panel) -->
+    <div class="official-overlay" id="official-overlay"></div>
+    <aside class="official-drawer" id="official-drawer">
+      <div class="official-drawer-header">
+        <div class="official-header-main">
+          <div class="official-title-row">
+            <h3 class="official-tour-name" id="official-tour-name">景點名稱</h3>
+            <span class="badge badge-county" id="official-county-badge">縣市</span>
+            <span class="badge badge-open" id="official-status-badge">今日狀態</span>
+            <span class="badge badge-no-web hidden" id="official-no-web-badge">🚫 沒有官方網站</span>
+          </div>
+          <div class="official-sub-meta" id="official-sub-meta">
+            <span id="official-meta-schedule">⏰ 場次載入中</span> · <span id="official-meta-price">💰 費用說明</span>
+          </div>
+        </div>
+        <div class="official-header-actions">
+          <button class="btn-drawer-action" id="btn-official-fav" title="加入收藏">
+            <span id="official-fav-icon">🤍</span>
+          </button>
+          <button class="btn-drawer-action" id="btn-official-cal" title="加行事曆">
+            📅
+          </button>
+          <a href="#" target="_blank" class="btn-drawer-action" id="btn-official-external" title="在獨立新分頁開啟官網">
+            ↗️
+          </a>
+          <button class="btn-close-drawer" id="btn-close-official" title="關閉官網視窗">✕</button>
+        </div>
+      </div>
+
+      <!-- 模式切換頁籤：官網原站互動 / 精選導覽簡介 -->
+      <div class="official-drawer-tabs">
+        <button class="official-tab-btn active" id="tab-official-web" data-tab="web">
+          🌐 官方網站首頁 (可直接點擊操作)
+        </button>
+        <button class="official-tab-btn" id="tab-official-info" data-tab="info">
+          📋 真人導覽詳情 & 票價
+        </button>
+      </div>
+
+      <!-- 官網內容載入與互動主體 -->
+      <div class="official-drawer-body">
+        <!-- 視圖 1: 官網 iframe 容器 -->
+        <div class="official-view-web" id="official-view-web">
+          <!-- 頂部防嵌入提示條 -->
+          <div class="official-iframe-notice" id="official-iframe-notice">
+            <span>💡 提示：若部分場館官網因資安防護無法在框內顯示，請點</span>
+            <a href="#" target="_blank" id="notice-external-link">此處直通官網</a>
+            <span>或切換上方「導覽詳情」</span>
+          </div>
+
+          <!-- 載入中動畫 -->
+          <div class="official-loading-state" id="official-loading">
+            <div class="loading-spinner"></div>
+            <span>正在連線官網首頁...</span>
+          </div>
+
+          <!-- 官網 iframe -->
+          <iframe id="official-iframe" class="official-iframe" sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals"></iframe>
+
+          <!-- 無官方網站提示卡片 -->
+          <div class="no-web-notice-card hidden" id="official-no-web-container">
+            <div style="font-size:42px; margin-bottom:12px;">🏛️</div>
+            <h4 style="font-size:16px; margin-bottom:8px; color:var(--text-main);">此景點沒有官方網站</h4>
+            <p style="font-size:13px; color:var(--text-sub); line-height:1.6; max-width:320px; margin-bottom:16px;">
+              本景點現場提供專人導覽與走讀解說，目前未設立獨立官方網站。場次時間、門票票價與聯絡方式請參閱「導覽詳情」！
+            </p>
+            <button class="btn-primary" onclick="window.app.switchOfficialTab('info')">
+              👉 前往真人導覽詳情 & 票價
+            </button>
+          </div>
+        </div>
+
+        <!-- 視圖 2: 精選真人導覽與完整票價明細 (當使用者想看純文字整理或官網被擋時) -->
+        <div class="official-view-info hidden" id="official-view-info">
+          <div class="info-content-scroll" id="official-info-container">
+            <!-- 由 JS 動態注入 -->
+          </div>
+        </div>
+      </div>
+    </aside>
+
     <!-- 彈窗 1：新增/編輯自訂導覽景點 -->
     <div class="modal hidden" id="modal-tour">
       <div class="modal-content">
